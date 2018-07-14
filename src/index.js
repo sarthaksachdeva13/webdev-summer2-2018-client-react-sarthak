@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import HelloWorld from './hello';
+import '../node_modules/bootstrap/dist/css/bootstrap.css';
 
 ReactDOM.render(
-    <h1>Hello World!!!Wow, honey, I never thought our son would go that far!
-
-        Check out this really funny jokes: https://short-funny.com/sarcasm-black-humor.php#ixzz5L9u2kQOh</h1>,
+    <HelloWorld/>,
     document.getElementById('root')
 );
