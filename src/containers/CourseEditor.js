@@ -1,8 +1,8 @@
-import React from 'react';
+import React, {Component} from 'react';
 import ModuleList from './ModuleList';
 import LessonTabs from './LessonTabs';
 
-class CourseEditor extends React.Component{
+class CourseEditor extends Component{
     render(){
         return(
             <div className="row">

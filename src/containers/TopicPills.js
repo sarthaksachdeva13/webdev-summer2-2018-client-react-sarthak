@@ -1,6 +1,6 @@
-import React from 'react';
+import React,{Component} from 'react';
 
-class TopicPills extends React.Component{
+class TopicPills extends Component{
     render(){
         return(
                 <ul className="nav nav-pills">

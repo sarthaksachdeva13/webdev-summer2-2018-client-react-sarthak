@@ -1,10 +1,10 @@
-import React from 'react';
+import React,{Component} from 'react';
 import TopicPills from './TopicPills';
 import CourseCard from '../components/CourseCard'
 import CourseEditor from './CourseEditor';
 import '../stylesheet.css';
 
-class CourseManager extends React.Component{
+class CourseManager extends Component{
     render(){
         return(
             <div className="container-fluid">

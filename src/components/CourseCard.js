@@ -1,6 +1,6 @@
-import React from "react";
+import React, {Component} from "react";
 
-class CourseCard extends React.Component {
+class CourseCard extends Component {
     render() {
         return (
             <div className="card">

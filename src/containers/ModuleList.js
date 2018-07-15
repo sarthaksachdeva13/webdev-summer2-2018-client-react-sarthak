@@ -17,6 +17,7 @@ class ModuleList extends Component {
                 {title: 'Module 6 - MongoDB', id: 678}
             ]
         };
+
         this.titleChanged = this.titleChanged.bind(this);
         this.createModule = this.createModule.bind(this);
     }
