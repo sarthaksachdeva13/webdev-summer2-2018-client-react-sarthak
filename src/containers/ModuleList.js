@@ -9,26 +9,25 @@ class ModuleList extends Component {
         this.state = {
             module: {title: ''},
             modules: [
-                {title: 'Module 1 - jQuery', id: 123},
-                {title: 'Module 2 - React', id: 234},
-                {title: 'Module 3 - Redux', id: 345},
-                {title: 'Module 4 - Angular', id: 456},
-                {title: 'Module 5 - Node.js', id: 567},
-                {title: 'Module 6 - MongoDB', id: 678}
-            ]
+                {title: 'Module 1 - jQuery'},
+                {title: 'Module 2 - React'},
+                {title: 'Module 3 - Redux'},
+                {title: 'Module 4 - Angular'},
+                {title: 'Module 5 - Node.js'},
+                {title: 'Module 6 - MongoDB'}
+            ],
         };
-
         this.titleChanged = this.titleChanged.bind(this);
         this.createModule = this.createModule.bind(this);
     }
 
     renderListOfModules() {
         return this.state.modules
-            .map(function (module) {
-                return <ModuleListItem
+            .map((module, i) =>
+                <ModuleListItem
                     title={module.title}
-                    key={module.id}/>
-            });
+                    key={i}/>
+            );
     }
 
     titleChanged(event) {
