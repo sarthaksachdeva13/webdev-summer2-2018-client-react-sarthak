@@ -13,16 +13,9 @@ class ModuleListItem extends Component {
                 <Link to={`/course/${this.props.courseId}/module/${this.props.module.id}`}>
                     {this.props.module.title}
                 </Link>
-
-                <button onClick={() => {
-                    this.props.delete(this.props.module.id)
-                }}>
-                    DELETE
-                </button>
                 <span className="pull-right">
-                <i className="fa fa-trash"/>
-                <i className="fa fa-pencil"/>
-                 </span>
+                    <i className="fa fa-trash" onClick={() => this.props.delete(this.props.module.id)}/>
+                </span>
             </li>
         )
     }

@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import LessonTabs from "./LessonTabs";
 
 export default class ModuleEditor extends Component {
 
@@ -38,7 +39,9 @@ export default class ModuleEditor extends Component {
 
     render() {
         return (
-            <h1>Module Editor</h1>
+            <div className="my-auto">
+                <LessonTabs/>
+            </div>
         )
     }
 }

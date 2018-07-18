@@ -59,9 +59,7 @@ class ModuleList extends Component {
     findAllModulesForCourse(courseId) {
         this.moduleService
             .findAllModulesForCourse(courseId)
-            .then((modules) => {
-                this.setModules(modules)
-            });
+            .then((modules) => this.setModules(modules));
     }
 
     setModules(modules) {
@@ -83,9 +81,9 @@ class ModuleList extends Component {
 
     deleteModule(moduleId) {
         this.moduleService.deleteModule(moduleId)
-            .then(() => {
+            .then(() =>
                 this.findAllModulesForCourse(this.state.courseId)
-            });
+            );
     }
 
 

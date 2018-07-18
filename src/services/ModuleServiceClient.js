@@ -17,7 +17,7 @@ export default class ModuleService {
         return this[_singleton]
     }
 
-    static createModule(courseId, module) {
+     createModule(courseId, module) {
         return fetch(MODULE_API_URL.replace('CID', courseId),
             {
                 body: JSON.stringify(module),
@@ -28,7 +28,7 @@ export default class ModuleService {
         })
     }
 
-    static findAllModulesForCourse(courseId) {
+     findAllModulesForCourse(courseId) {
         return fetch(
             MODULE_API_URL
                 .replace('COURSE_ID', courseId))

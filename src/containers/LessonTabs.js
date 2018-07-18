@@ -1,6 +1,11 @@
 import React, {Component} from 'react';
 
 class LessonTabs extends Component {
+
+
+    constructor(props){
+        super(props);
+    }
     render() {
         return (
 
