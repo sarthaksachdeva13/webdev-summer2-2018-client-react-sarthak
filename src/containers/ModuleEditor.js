@@ -1,18 +1,14 @@
 import React, {Component} from 'react';
 import LessonTabs from "./LessonTabs";
 
-export default class ModuleEditor extends Component {
-
-
+class ModuleEditor extends Component {
     constructor(props) {
         super(props);
         this.state =
             {
                 moduleId: '',
-                courseId: '',
-                modules: []
+                courseId: ''
             };
-
         this.setModuleId = this.setModuleId.bind(this);
         this.setCourseId = this.setCourseId.bind(this);
     }
@@ -40,8 +36,11 @@ export default class ModuleEditor extends Component {
     render() {
         return (
             <div className="my-auto">
-                <LessonTabs/>
+                <LessonTabs courseId={this.state.courseId}
+                            moduleId={this.state.moduleId}/>
             </div>
         )
     }
 }
+
+export default ModuleEditor;

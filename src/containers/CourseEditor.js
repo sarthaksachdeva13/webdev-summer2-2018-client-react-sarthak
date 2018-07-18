@@ -1,48 +1,43 @@
 import React, {Component} from 'react';
 import ModuleList from './ModuleList';
-import CourseService from "../services/CourseServiceClient";
-
 
 class CourseEditor extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            course: {},
-            courseId: ''
+            courseId: '',
+            courseTitle : ''
         };
-
-        this.courseService = CourseService.instance;
-        this.setCourse = this.setCourse.bind(this);
-        this.selectCourse = this.selectCourse.bind(this);
-
+        this.setCourseId = this.setCourseId.bind(this);
+        this.setCourseTitle = this.setCourseTitle.bind(this);
     }
 
     componentDidMount() {
-        this.selectCourse(this.props.match.params.courseId);
+        this.setCourseId(this.props.match.params.courseId);
+        this.setCourseTitle(this.props.match.params.courseTitle);
     }
 
     componentWillReceiveProps(newProps) {
-        this.selectCourse
-        (newProps.match.params.courseId);
+        this.setCourseId(newProps.match.params.courseId);
+        this.setCourseTitle(newProps.props.match.params.courseTitle);
     }
 
-    setCourse(course) {
-        this.setState({course: course});
+    setCourseId(courseId){
+        this.setState({courseId : courseId})
     }
 
-    selectCourse(courseId) {
-        this.setState({courseId: courseId});
-        this.courseService.findCourseById(courseId)
-            .then((course) => {
-                this.setState({course: course})
-            });
+    setCourseTitle(courseTitle){
+        this.setState({courseTitle : courseTitle})
     }
+
+
 
     render() {
         return (
-            <div className="container-fluid">
-                <ModuleList courseId={this.state.courseId} course={this.state.course}/>
+            <div>
+                <h2>Course : {this.state.courseTitle} </h2>
+                <ModuleList courseId={this.state.courseId}/>
             </div>
         );
     }

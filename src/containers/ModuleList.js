@@ -8,40 +8,32 @@ import '../../node_modules/bootstrap/dist/css/bootstrap.css';
 
 
 class ModuleList extends Component {
-    constructor(props) {
-        super(props);
+    constructor() {
+        super();
         this.state = {
-            course: {title: ''},
             courseId: '',
             module: {title: '', id: ''},
             modules: []
         };
+
         this.moduleService = ModuleService.instance;
+        this.setCourseId = this.setCourseId.bind(this);
         this.titleChanged = this.titleChanged.bind(this);
         this.createModule = this.createModule.bind(this);
         this.deleteModule = this.deleteModule.bind(this);
-        this.setCourse = this.setCourse.bind(this);
-        this.setCourseId = this.setCourseId.bind(this);
-    }
-
-
-    setCourse(course) {
-        this.setState({course: course});
-    }
-
-    setCourseId(courseId) {
-        this.setState({courseId: courseId});
     }
 
     componentDidMount() {
         this.setCourseId(this.props.courseId);
-        this.setCourse(this.props.course);
     }
 
     componentWillReceiveProps(newProps) {
         this.findAllModulesForCourse(newProps.courseId);
         this.setCourseId(newProps.courseId);
-        this.setCourse(newProps.course);
+    }
+
+    setCourseId(courseId) {
+        this.setState({courseId: courseId});
     }
 
     renderListOfModules() {
@@ -72,7 +64,7 @@ class ModuleList extends Component {
     }
 
     createModule() {
-        this.moduleService.createModule(this.props.courseId, this.state.module)
+        this.moduleService.createModule(this.state.courseId, this.state.module)
             .then(() => {
                 this.findAllModulesForCourse(this.state.courseId);
             });
@@ -90,22 +82,32 @@ class ModuleList extends Component {
     render() {
         return (
             <Router>
-                <div>
-                    <div id="addModuleInputGroup" className="input-group">
-                        <input className="form-control"
-                               placeholder="Enter a module"
-                               onChange={this.titleChanged}
-                               value={this.state.module.title}/>
-                        <div className="input-group-append">
-                            <button onClick={this.createModule}
-                                    className="btn btn-info">
-                                <i className="fa fa-plus"/>
-                            </button>
+                <div className="row">
+                    <div id="module-list" className="col-4">
+                        <div className="input-group mb-3">
+                            <input className="form-control"
+                                   placeholder="Enter a module"
+                                   aria-label="New Module" aria-describedby="basic-addon2"
+                                   onChange={this.titleChanged} value={this.state.module.title}/>
+                            <div className="input-group-append">
+                                <button onClick={this.createModule}
+                                        className="btn btn-info">
+                                    <i className="fa fa-plus"/>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div className="nav flex-column nav-pills" id="v-pills-tab" role="tablist"
+                             aria-orientation="vertical">
+                            {this.renderListOfModules()}
                         </div>
                     </div>
-                    <ul className="list-group">
-                        {this.renderListOfModules()}
-                    </ul>
+                    <div className="col-8">
+                        <Route path="/course/:courseId/module/:moduleId"
+                               component={ModuleEditor}>
+                        </Route>
+
+                    </div>
                 </div>
             </Router>
         );
@@ -114,4 +116,3 @@ class ModuleList extends Component {
 
 
 export default ModuleList;
-

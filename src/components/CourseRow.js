@@ -1,31 +1,25 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {Link} from 'react-router-dom';
+import '../../node_modules/font-awesome/css/font-awesome.min.css';
+import '../stylesheet.css';
 
-class CourseRow extends Component {
+class CourseRow extends React.Component {
     constructor(props) {
         super(props);
     }
 
     render() {
         return (
-            <tr id={this.props.course.id} key={this.props.courseId}>
-                <td style={{"width": "50%"}}>
-                    <div>
-                        <i className="fa fa-files-o pr-2"/>
-                        <Link to={`/course/${this.props.course.id}`}>
-                            <span className="font-weight-bold text-black-50">{this.props.course.title}</span>
-                        </Link>
-                    </div>
-                </td>
-                <td style={{"width": "14%"}}>
-                    Sarthak
-                </td>
+            <tr>
+                <td><Link to={`/course/${this.props.course.id}`}>
+                    <i className="fa fa-book"/> <span id="course-title">{this.props.course.title}</span>
+                </Link></td>
+                <td>{this.props.course.modified}</td>
                 <td>
-                    <div>
-                        <span className="font-weight-bold text-black-50">{this.props.course.modified}</span>
-                        <i className="fa fa-times fa-2x float-right text-dark" style={{"hover": "cursor"}}
-                           onClick={() => this.props.deleteCourse(this.props.course.id)}/>
-                    </div>
+                    <span className="float-right" onClick={() => {
+                        this.props.delete(this.props.course.id)}}>
+                        <i className="fa fa-trash"/>
+                    </span>
                 </td>
             </tr>
 
