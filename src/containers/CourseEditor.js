@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
-import CourseService from "../services/CourseServiceClient";
 import ModuleList from './ModuleList';
+import CourseService from "../services/CourseServiceClient";
+
 
 class CourseEditor extends Component {
 
@@ -26,14 +27,24 @@ class CourseEditor extends Component {
         (newProps.match.params.courseId);
     }
 
+    setCourse(course) {
+        this.setState({course: course});
+    }
+
     selectCourse(courseId) {
         this.setState({courseId: courseId});
+        this.courseService.findCourseById(courseId)
+            .then((course) => {
+                this.setState({course: course})
+            });
     }
 
     render() {
         return (
-            <h3>Course {this.state.courseId}</h3>
-        )
+            <div className="container-fluid">
+                <ModuleList courseId={this.state.courseId} course={this.state.course}/>
+            </div>
+        );
     }
 
 
