@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
-import CourseRow from '../components/CourseRow'
-import CourseService from '../services/CourseServiceClient'
+import CourseRow from '../components/CourseRow';
+import CourseService from '../services/CourseServiceClient';
+import ModuleList from './ModuleList';
 
 
 class CourseList extends Component {
@@ -17,7 +18,7 @@ class CourseList extends Component {
 
 
     deleteCourse(courseId) {
-        this.courseService.deleteCourse(courseId)
+        CourseService.deleteCourse(courseId)
             .then(() => {
                 this.findAllCourses();
             });
@@ -29,7 +30,7 @@ class CourseList extends Component {
 
 
     findAllCourses() {
-        this.courseService.findAllCourses()
+        CourseService.findAllCourses()
             .then(courses => this.setState({courses: courses}));
     }
 
@@ -37,7 +38,7 @@ class CourseList extends Component {
         this.setState({course: {title: event.target.value}});
 
     createCourse() {
-        this.courseService.createCourse(this.state.course)
+        CourseService.createCourse(this.state.course)
             .then(() => {
                 this.findAllCourses();
             });

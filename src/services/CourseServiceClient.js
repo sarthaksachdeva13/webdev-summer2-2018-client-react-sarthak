@@ -14,14 +14,14 @@ class CourseService {
         return this[_singleton]
     }
 
-    findAllCourses() {
+    static findAllCourses() {
         return fetch(COURSE_API_URL)
             .then(function (response) {
                 return response.json();
             });
     }
 
-    createCourse(course) {
+    static createCourse(course) {
         return fetch(COURSE_API_URL, {
             body: JSON.stringify(course),
             headers: {
@@ -33,7 +33,7 @@ class CourseService {
         });
     }
 
-    deleteCourse(courseId) {
+    static deleteCourse(courseId) {
         return fetch(COURSE_API_URL + "/" + courseId, {
             method: 'DELETE'
         }).then(function (response) {
