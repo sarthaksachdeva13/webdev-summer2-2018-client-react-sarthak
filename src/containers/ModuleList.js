@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import ModuleListItem from '../components/ModuleListItem'
 import ModuleService from '../services/ModuleServiceClient';
 import ModuleEditor from './ModuleEditor';
-import {BrowserRouter as Router} from 'react-router-dom'
+import {BrowserRouter as Router, Route} from 'react-router-dom'
 import '../stylesheet.css';
 import '../../node_modules/bootstrap/dist/css/bootstrap.css';
 
@@ -14,19 +14,34 @@ class ModuleList extends Component {
             course: {title: ''},
             courseId: '',
             module: {title: '', id: ''},
-            modules: [
-                {title: 'Module 1 - jQuery'},
-                {title: 'Module 2 - React'},
-                {title: 'Module 3 - Redux'},
-                {title: 'Module 4 - Angular'},
-                {title: 'Module 5 - Node.js'},
-                {title: 'Module 6 - MongoDB'}
-            ],
+            modules: []
         };
+        this.moduleService = ModuleService.instance;
         this.titleChanged = this.titleChanged.bind(this);
         this.createModule = this.createModule.bind(this);
-        this.moduleService = this.moduleService.bind(this);
         this.deleteModule = this.deleteModule.bind(this);
+        this.setCourse = this.setCourse.bind(this);
+        this.setCourseId = this.setCourseId.bind(this);
+    }
+
+
+    setCourse(course) {
+        this.setState({course: course});
+    }
+
+    setCourseId(courseId) {
+        this.setState({courseId: courseId});
+    }
+
+    componentDidMount() {
+        this.setCourseId(this.props.courseId);
+        this.setCourse(this.props.course);
+    }
+
+    componentWillReceiveProps(newProps) {
+        this.findAllModulesForCourse(newProps.courseId);
+        this.setCourseId(newProps.courseId);
+        this.setCourse(newProps.course);
     }
 
     renderListOfModules() {
@@ -35,13 +50,11 @@ class ModuleList extends Component {
                 <ModuleListItem
                     module={module}
                     key={module.id}
+                    courseId={this.state.courseId}
                     delete={this.deleteModule}/>
             );
     }
 
-    componentWillReceiveProps(newProps) {
-        this.findAllModulesForCourse(newProps.courseId)
-    }
 
     findAllModulesForCourse(courseId) {
         this.moduleService
@@ -61,10 +74,12 @@ class ModuleList extends Component {
     }
 
     createModule() {
-        this.moduleService.createModule(this.state.courseId, this.state.module)
-            .then(() =>
-                this.findAllModulesForCourse(this.state.courseId));
+        this.moduleService.createModule(this.props.courseId, this.state.module)
+            .then(() => {
+                this.findAllModulesForCourse(this.state.courseId);
+            });
     }
+
 
     deleteModule(moduleId) {
         this.moduleService.deleteModule(moduleId)
@@ -76,23 +91,25 @@ class ModuleList extends Component {
 
     render() {
         return (
-            <div>
-                <div id="addModuleInputGroup" className="input-group">
-                    <input className="form-control"
-                           placeholder="Enter a module"
-                           onChange={this.titleChanged}
-                           value={this.state.module.title}/>
-                    <div className="input-group-append">
-                        <button onClick={this.createModule}
-                                className="btn btn-info">
-                            <i className="fa fa-plus"/>
-                        </button>
+            <Router>
+                <div>
+                    <div id="addModuleInputGroup" className="input-group">
+                        <input className="form-control"
+                               placeholder="Enter a module"
+                               onChange={this.titleChanged}
+                               value={this.state.module.title}/>
+                        <div className="input-group-append">
+                            <button onClick={this.createModule}
+                                    className="btn btn-info">
+                                <i className="fa fa-plus"/>
+                            </button>
+                        </div>
                     </div>
+                    <ul className="list-group">
+                        {this.renderListOfModules()}
+                    </ul>
                 </div>
-                <ul className="list-group">
-                    {this.renderListOfModules()}
-                </ul>
-            </div>
+            </Router>
         );
     }
 }
