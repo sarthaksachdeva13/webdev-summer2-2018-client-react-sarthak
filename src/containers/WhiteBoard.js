@@ -17,7 +17,7 @@ class WhiteBoard extends Component {
             <Router>
                 <div className="container-fluid">
                     <h1>WhiteBoard</h1>
-                    <Route path="/course" component={CourseList}/>
+                    <Route path="/courses" component={CourseList}/>
                     <Route path="/course/:courseId" component={CourseEditor}/>
                 </div>
             </Router>

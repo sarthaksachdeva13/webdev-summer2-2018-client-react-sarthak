@@ -7,30 +7,35 @@ import ModuleList from './ModuleList';
 class CourseList extends Component {
     constructor() {
         super();
+        this.state = {
+            course: {
+                title: "",
+                created: "",
+                modified: ""
+            },
+            courses: []
+        };
         this.courseService = CourseService.instance;
         this.formChanged = this.formChanged.bind(this);
         this.createCourse = this.createCourse.bind(this);
         this.deleteCourse = this.deleteCourse.bind(this);
-        this.state = {
-            courses: []
-        };
     }
 
-
-    deleteCourse(courseId) {
-        CourseService.deleteCourse(courseId)
-            .then(() => {
-                this.findAllCourses();
-            });
-    }
 
     componentDidMount() {
         this.findAllCourses()
     }
 
 
+    deleteCourse(courseId) {
+        this.courseService.deleteCourse(courseId)
+            .then(() => {
+                this.findAllCourses();
+            });
+    }
+
     findAllCourses() {
-        CourseService.findAllCourses()
+        this.courseService.findAllCourses()
             .then(courses => this.setState({courses: courses}));
     }
 
@@ -38,15 +43,15 @@ class CourseList extends Component {
         this.setState({course: {title: event.target.value}});
 
     createCourse() {
-        CourseService.createCourse(this.state.course)
+        this.courseService.createCourse(this.state.course)
             .then(() => {
                 this.findAllCourses();
             });
     }
 
     renderCourses() {
-        return this.state.courses.map((course, index) =>
-            <CourseRow key={index}
+        return this.state.courses.map((course) =>
+            <CourseRow key={course.id}
                        course={course}
                        delete={this.deleteCourse}
             />)
