@@ -1,30 +1,37 @@
 import React, {Component} from 'react';
+import CourseService from "../services/CourseServiceClient";
 import ModuleList from './ModuleList';
-import LessonTabs from './LessonTabs';
 
-class CourseEditor extends Component{
+class CourseEditor extends Component {
 
-    constructor(props){
+    constructor(props) {
         super(props);
+        this.state = {
+            course: {},
+            courseId: ''
+        };
+
+        this.courseService = CourseService.instance;
+        this.setCourse = this.setCourse.bind(this);
         this.selectCourse = this.selectCourse.bind(this);
-        this.state = { courseId : ''};
+
     }
 
-    componentDidMount(){
+    componentDidMount() {
         this.selectCourse(this.props.match.params.courseId);
     }
 
-    componentWillReceiveProps(newProps){
+    componentWillReceiveProps(newProps) {
         this.selectCourse
         (newProps.match.params.courseId);
     }
 
-    selectCourse(courseId){
+    selectCourse(courseId) {
         this.setState({courseId: courseId});
     }
 
-    render(){
-        return(
+    render() {
+        return (
             <h3>Course {this.state.courseId}</h3>
         )
     }

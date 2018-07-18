@@ -42,6 +42,26 @@ class CourseService {
     }
 
 
+    static findCourseById(id) {
+        return fetch(COURSE_API_URL + "/" + id)
+            .then(function (response) {
+                return response.json();
+            })
+    }
+
+    static updateCourse(course) {
+        return fetch(COURSE_API_URL, {
+            body: JSON.stringify(course),
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            method: 'PUT'
+        }).then(function (response) {
+            return response.json();
+        })
+    }
+
+
 }
 
 export default CourseService;
