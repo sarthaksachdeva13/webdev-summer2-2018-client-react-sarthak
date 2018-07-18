@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import LessonService from '../services/LessonServiceClient';
-import LessonListItem from '../components/LessonListItem';
+import LessonListItem from '../components/LessonTabItem';
 import LessonEditor from './LessonEditor';
 
 class LessonTabs extends Component {
@@ -10,7 +10,7 @@ class LessonTabs extends Component {
         this.state = {
             courseId : '',
             moduleId : '',
-            lesson : {title : '', id: ''},
+            lesson : {title : ''},
             lessons : []
         };
         this.lessonService = LessonService.instance;
@@ -22,21 +22,7 @@ class LessonTabs extends Component {
 
     render() {
         return (
-
-            <ul className="nav nav-tabs">
-                <li className="nav-item">
-                    <a className="nav-link active" href="#">Active</a>
-                </li>
-                <li className="nav-item">
-                    <a className="nav-link" href="#">Link</a>
-                </li>
-                <li className="nav-item">
-                    <a className="nav-link" href="#">Link</a>
-                </li>
-                <li className="nav-item">
-                    <a className="nav-link disabled" href="#">Disabled</a>
-                </li>
-            </ul>
+            <h1>Lesson Tabs</h1>
         )
     }
 }

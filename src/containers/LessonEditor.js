@@ -40,8 +40,8 @@ class LessonEditor extends Component {
         this.setLessonId(newProps.props.match.params.lessonId);
     }
 
-    render(){
-        return(
+    render() {
+        return (
             <TopicPills courseId={this.state.courseId}
                         moduleId={this.state.moduleId}
                         lessonId={this.state.lessonId}/>

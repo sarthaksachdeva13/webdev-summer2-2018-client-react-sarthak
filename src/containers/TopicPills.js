@@ -1,22 +1,32 @@
-import React,{Component} from 'react';
+import React, {Component} from 'react';
+import {BrowserRouter as Router, Route} from 'react-router-dom';
+import TopicService from '../services/TopicServiceClient';
+import TopicPillItem from '../components/TopicPillItem';
 
-class TopicPills extends Component{
-    render(){
-        return(
-                <ul className="nav nav-pills">
-                    <li className="nav-item">
-                        <a className="nav-link active" href="#">Active</a>
-                    </li>
-                    <li className="nav-item">
-                        <a className="nav-link" href="#">Link</a>
-                    </li>
-                    <li className="nav-item">
-                        <a className="nav-link" href="#">Link</a>
-                    </li>
-                    <li className="nav-item">
-                        <a className="nav-link disabled" href="#">Disabled</a>
-                    </li>
-                </ul>
+
+class TopicPills extends Component {
+
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            courseId: '',
+            moduleId: '',
+            lessonId: '',
+            topic: {title: ''},
+            topics: []
+        }
+
+
+    }
+
+
+
+
+
+    render() {
+        return (
+            <h2>Topic Pills</h2>
         )
     }
 }

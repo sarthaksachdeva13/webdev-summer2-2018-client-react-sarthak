@@ -7,7 +7,6 @@ import {BrowserRouter as Router, Route}
 
 class WhiteBoard extends Component {
 
-
     constructor() {
         super();
     }

@@ -1,7 +1,6 @@
 import React from 'react'
 
-export default class TopicListItem
-    extends React.Component {
+class TopicPillItem extends React.Component {
     constructor(props) {
         super(props);
     }
@@ -22,3 +21,4 @@ export default class TopicListItem
         )
     }
 }
+export default TopicPillItem;
