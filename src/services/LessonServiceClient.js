@@ -1,12 +1,13 @@
-const LESSON_API_URL = 'https://localhost:8080//api/course/CID/module/MID/lesson';
-const LESSON_URL = 'https://localhost:8080/api/lesson/LID';
-
+let _singleton = Symbol();
+const LESSON_API_URL =
+    'http://localhost:8080/api/course/CID/module/MID/lesson';
+const LESSON_API_URL_ONE =
+    'http://localhost:8080/api/lesson/LID';
 
 export default class LessonService {
     constructor(singletonToken) {
-        if (singletonToken !== _singleton) {
-            throw new Error("Singleton!!!");
-        }
+        if (_singleton !== singletonToken)
+            throw new Error('Singleton!!!');
     }
 
     static get instance() {
@@ -15,65 +16,59 @@ export default class LessonService {
         return this[_singleton]
     }
 
+    createLesson(courseId, moduleId, lesson) {
+        return fetch(LESSON_API_URL.replace('CID', courseId).replace('MID', moduleId),
+            {
+                body: JSON.stringify(lesson),
+                headers: {'Content-Type': 'application/json'},
+                method: 'POST'
+            }).then(function (response) {
+            return response.json();
+        })
+    }
+
+    deleteLesson(lessonId) {
+        return fetch(LESSON_API_URL_ONE.replace
+        ('LID', lessonId), {
+            method: 'delete'
+        })
+    }
+
     findAllLessonsForModule(courseId, moduleId) {
-        return fetch(LESSON_API_URL.replace('CID', courseId).replace('MID', moduleId))
+        return fetch(
+            LESSON_API_URL.replace('CID', courseId).replace('MID', moduleId))
             .then(function (response) {
                 return response.json();
             })
     }
 
     findAllLessons() {
-        return fetch(LESSON_URL)
+        return fetch(LESSON_API_URL_ONE)
             .then(function (response) {
                 return response.json();
             });
     }
 
     findLessonById(lessonId) {
-        return fetch(LESSON_URL.replace('LID', lessonId))
-            .then(function(response) {
+        return fetch(LESSON_API_URL_ONE.replace('LID', lessonId))
+            .then(function (response) {
                 return response.json();
             });
-    }
-
-    createLesson(courseId, moduleId, lesson){
-        return fetch(LESSON_API_URL.replace('CID', courseId).replace('MID', moduleId),
-            {
-                body: JSON.stringify(lesson),
-                headers:
-                    {'content-type': 'application/json'},
-                method: 'POST'
-            }).then(function(response) {
-            return response.json();
-        });
-    }
-
-    deleteLesson(lessonId) {
-        return fetch(LESSON_URL.replace
-        ('LID', lessonId), {
-            method: 'delete'
-        })
     }
 
     updateLesson(lessonId, lesson) {
-        return fetch(LESSON_URL.replace
+        return fetch(LESSON_API_URL_ONE.replace
             ('LID', lessonId),
             {
-                method : 'PUT',
-                body : JSON.stringify(lesson),
+                method: 'PUT',
+                body: JSON.stringify(lesson),
                 headers: {
-                    'content-type':'application/json'
-                }})
-            .then(function(response) {
+                    'content-type': 'application/json'
+                }
+            })
+            .then(function (response) {
                 return response.json();
+
             });
     }
-
-
-
-
 }
-
-
-
-

@@ -1,39 +1,36 @@
-import React, {Component} from 'react';
+import LessonTabItem from '../components/LessonTabItem';
+import React, {Component} from "react";
 import LessonService from '../services/LessonServiceClient';
-import LessonListItem from '../components/LessonTabItem';
 import LessonEditor from './LessonEditor';
+import {BrowserRouter as Router, Route} from 'react-router-dom'
 
-class LessonTabs extends Component {
-
+export default class LessonTabs extends Component {
     constructor() {
         super();
         this.state = {
-            courseId: '',
             moduleId: '',
+            courseId: '',
             lesson: {title: ''},
             lessons: []
         };
-        this.lessonService = LessonService.instance;
         this.setCourseId = this.setCourseId.bind(this);
         this.setModuleId = this.setModuleId.bind(this);
         this.titleChanged = this.titleChanged.bind(this);
         this.createLesson = this.createLesson.bind(this);
         this.deleteLesson = this.deleteLesson.bind(this);
-
+        this.lessonService = LessonService.instance;
     }
 
-
     componentDidMount() {
-        this.setCourseId(this.props.courseId);
         this.setModuleId(this.props.moduleId);
+        this.setCourseId(this.props.courseId);
     }
 
     componentWillReceiveProps(newProps) {
         this.findAllLessonsForModule(newProps.courseId, newProps.moduleId);
-        this.setCourseId(newProps.courseId);
         this.setModuleId(newProps.moduleId);
+        this.setCourseId(newProps.courseId);
     }
-
 
     setCourseId(courseId) {
         this.setState({courseId: courseId});
@@ -47,64 +44,59 @@ class LessonTabs extends Component {
         this.setState({lesson: {title: event.target.value}});
     }
 
+    createLesson() {
+        this.lessonService.createLesson
+        (this.state.courseId, this.state.moduleId, this.state.lesson)
+            .then(() => this.findAllLessonsForModule(this.state.courseId, this.state.moduleId));
+    }
+
+    deleteLesson(lessonId) {
+        this.lessonService
+            .deleteLesson(lessonId)
+            .then(() => this.findAllLessonsForModule(this.state.courseId, this.state.moduleId));
+    }
+
+    setLessons(lessons) {
+        this.setState({lessons: lessons})
+    }
+
     findAllLessonsForModule(courseId, moduleId) {
         this.lessonService
             .findAllLessonsForModule(courseId, moduleId)
-            .then((lessons) =>
-                this.setState({lessons: lessons})
-            );
-    }
-
-    createLesson() {
-        this.lessonService.createLesson(
-            this.state.courseId, this.state.moduleId, this.state.lesson)
-            .then(() =>
-                this.findAllLessonsforModule(this.state.courseId, this.state.moduleId)
-            );
-    }
-
-
-    deleteLesson(lessonId) {
-        this.lessonService.deleteLesson(lessonId)
-            .then(() => this.findAllLessonsforModule(this.state.courseId, this.state.moduleId)
-            );
+            .then((lessons) => this.setLessons(lessons));
     }
 
     renderListOfLessons() {
-        return this.state.lessons.map((lesson) =>
-            <LessonListItem lesson={lesson}
-                            key={lesson.id}
-                            courseId={this.state.courseId}
-                            moduleId={this.state.moduleId}
-                            delete={this.deleteLesson}
-            />
-        );
+        this.state.lessons.map((lesson) =>
+            <LessonTabItem key={lesson.id}
+                           delete={this.deleteLesson}
+                           moduleId={this.state.moduleId}
+                           courseId={this.state.courseId}
+                           lesson={lesson}/>);
     }
-
 
     render() {
         return (
             <Router>
                 <div>
-                    <div className="input-group mb-3">
-                        <input type="text" className="form-control" placeholder="New Lesson Title..."
-                               aria-label="New Lesson" aria-describedby="basic-addon2"
-                               onChange={this.titleChanged} value={this.state.lesson.title}/>
+                    <div className="input-group">
+                        <input className="form-control"
+                               placeholder="Enter Lesson Title"
+                               onChange={this.titleChanged}
+                               value={this.state.lesson.title}/>
                         <div className="input-group-append">
-                            <button type="button" className="btn btn-outline-primary" onClick={this.createLesson}>
-                                +</button>
+                            <button className="btn btn-warning"
+                                    onClick={this.createLesson}>+
+                            </button>
                         </div>
                     </div>
-                    <ul className="nav nav-tabs">
-                        {this.renderListOfLessons()}
-                    </ul>
+                    <ul className="nav nav-tabs">{this.renderListOfLessons()}</ul>
                     <Route path="/course/:courseId/module/:moduleId/lesson/:lessonId"
                            component={LessonEditor}>
                     </Route>
                 </div>
             </Router>
-        )
+
+        );
     }
 }
-
-export default LessonTabs;

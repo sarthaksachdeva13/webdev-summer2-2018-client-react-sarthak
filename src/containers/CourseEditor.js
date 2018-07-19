@@ -1,14 +1,16 @@
-import React, {Component} from 'react';
-import ModuleList from './ModuleList';
+import React, {Component} from "react";
+import ModuleList from "./ModuleList";
 
-class CourseEditor extends Component {
-
+class CourseEditor
+    extends Component {
     constructor(props) {
         super(props);
+
         this.state = {
             courseId: '',
-            courseTitle : ''
+            courseTitle: ''
         };
+
         this.setCourseId = this.setCourseId.bind(this);
         this.setCourseTitle = this.setCourseTitle.bind(this);
     }
@@ -20,29 +22,26 @@ class CourseEditor extends Component {
 
     componentWillReceiveProps(newProps) {
         this.setCourseId(newProps.match.params.courseId);
-        this.setCourseTitle(newProps.props.match.params.courseTitle);
+        this.setCourseTitle(newProps.match.params.courseTitle);
     }
 
-    setCourseId(courseId){
-        this.setState({courseId : courseId})
+    setCourseId(courseId) {
+        this.setState({courseId: courseId});
     }
 
-    setCourseTitle(courseTitle){
-        this.setState({courseTitle : courseTitle})
+    setCourseTitle(courseTitle) {
+        this.setState({courseTitle: courseTitle});
     }
-
-
 
     render() {
         return (
             <div>
-                <h2>Course : {this.state.courseTitle} </h2>
+                <h3>Module List for Course {this.state.courseTitle}</h3>
                 <ModuleList courseId={this.state.courseId}/>
             </div>
+
         );
     }
-
-
 }
 
 export default CourseEditor;

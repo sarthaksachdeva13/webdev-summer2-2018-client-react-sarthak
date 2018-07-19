@@ -1,43 +1,43 @@
-import React, {Component} from 'react';
-import {BrowserRouter as Router, Route} from 'react-router-dom';
-import TopicService from '../services/TopicServiceClient';
 import TopicPillItem from '../components/TopicPillItem';
 import TopicCard from './TopicCard';
+import React from "react";
+import '../../node_modules/bootstrap/dist/css/bootstrap.css';
+import '../../node_modules/font-awesome/css/font-awesome.min.css';
+import '../stylesheet.css';
+import TopicService from '../services/TopicServiceClient';
+import {BrowserRouter as Router, Route}
+    from 'react-router-dom'
 
-
-class TopicPills extends Component {
-
+export default class TopicPills
+    extends React.Component {
     constructor() {
         super();
-
         this.state = {
-            courseId: '',
             moduleId: '',
+            courseId: '',
             lessonId: '',
             topic: {title: ''},
             topics: []
         };
-
-        this.topicService = TopicService.instance;
         this.setCourseId = this.setCourseId.bind(this);
         this.setModuleId = this.setModuleId.bind(this);
         this.setLessonId = this.setLessonId.bind(this);
         this.titleChanged = this.titleChanged.bind(this);
         this.createTopic = this.createTopic.bind(this);
         this.deleteTopic = this.deleteTopic.bind(this);
-
+        this.topicService = TopicService.instance;
     }
 
     componentDidMount() {
-        this.setCourseId(this.props.courseId);
         this.setModuleId(this.props.moduleId);
+        this.setCourseId(this.props.courseId);
         this.setLessonId(this.props.lessonId);
     }
 
     componentWillReceiveProps(newProps) {
         this.findAllTopicsForLesson(newProps.courseId, newProps.moduleId, newProps.lessonId);
-        this.setCourseId(newProps.courseId);
         this.setModuleId(newProps.moduleId);
+        this.setCourseId(newProps.courseId);
         this.setLessonId(newProps.lessonId);
     }
 
@@ -57,43 +57,45 @@ class TopicPills extends Component {
         this.setState({topic: {title: event.target.value}});
     }
 
+    createTopic() {
+        this.topicService.createTopic
+        (this.state.courseId, this.state.moduleId, this.state.lessonId, this.state.topic)
+            .then(() => {
+                this.findAllTopicsForLesson
+                (this.state.courseId, this.state.moduleId, this.state.lessonId)
+            });
+    }
+
+    deleteTopic(topicId) {
+        let popupWindow = window.confirm("Are you sure you want to delete this topic?");
+        if (popupWindow) {
+            this.topicService
+                .deleteTopic(topicId)
+                .then(() => {
+                    this.findAllTopicsForLesson
+                    (this.state.courseId, this.state.moduleId, this.state.lessonId)
+                });
+        }
+    }
 
     findAllTopicsForLesson(courseId, moduleId, lessonId) {
         this.topicService
             .findAllTopicsForLesson(courseId, moduleId, lessonId)
-            .then((topics) =>
-                this.setState({topics: topics})
-            );
+            .then((topics) => this.setState({topics: topics}));
     }
-
-    createTopic() {
-        this.topicService.createTopic
-        (this.state.courseId, this.state.moduleId, this.state.lessonId, this.state.topic)
-            .then(() =>
-                this.findAllTopicsForLesson(this.state.courseId, this.state.moduleId, this.state.lessonId)
-            );
-    }
-
-    deleteTopic(topicId) {
-        this.topicService
-            .deleteTopic(topicId)
-            .then(() =>
-                this.findAllTopicsForLesson(this.state.courseId, this.state.moduleId, this.state.lessonId)
-            );
-    }
-
 
     renderListOfTopics() {
-        return this.state.topics.map((topic) =>
-            <TopicPillItem key={topic.id}
-                           delete={this.deleteTopic}
-                           moduleId={this.state.moduleId}
-                           courseId={this.state.courseId}
-                           lessonId={this.state.lessonId}
-                           topic={topic}/>
-        );
-    }
+        let topics = this.state.topics.map((topic) => {
+            return (<TopicPillItem key={topic.id}
+                                   delete={this.deleteTopic}
+                                   moduleId={this.state.moduleId}
+                                   courseId={this.state.courseId}
+                                   lessonId={this.state.lessonId}
+                                   topic={topic}/>)
+        });
+        return (topics);
 
+    }
 
     render() {
         return (
@@ -103,16 +105,20 @@ class TopicPills extends Component {
                         <div className="col-9">
                             <ul className="nav nav-pills">
                                 {this.renderListOfTopics()}
-                            </ul></div>
+                            </ul>
+                        </div>
                         <div className="col">
                             <div className="input-group mb-3">
                                 <input type="text" className="form-control" placeholder="New Topic Title..."
                                        aria-label="New Topic" aria-describedby="basic-addon2"
                                        onChange={this.titleChanged} value={this.state.topic.title}/>
                                 <div className="input-group-append">
-                                    <button type="button" className="btn btn-outline-primary" onClick={this.createTopic}>+</button>
+                                    <button type="button" className="btn btn-outline-primary"
+                                            onClick={this.createTopic}>+
+                                    </button>
                                 </div>
-                            </div> </div>
+                            </div>
+                        </div>
                     </div>
                     <Route path="/course/:courseId/module/:moduleId/lesson/:lessonId/topic/:topicId"
                            component={TopicCard}>
@@ -120,7 +126,6 @@ class TopicPills extends Component {
                 </div>
             </Router>
         )
+
     }
 }
-
-export default TopicPills;

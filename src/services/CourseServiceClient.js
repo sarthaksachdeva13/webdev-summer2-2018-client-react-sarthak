@@ -1,7 +1,6 @@
 const COURSE_API_URL = 'http://localhost:8080/api/course';
 
 let _singleton = Symbol();
-
 class CourseService {
     constructor(singletonToken) {
         if (_singleton !== singletonToken)
@@ -19,13 +18,6 @@ class CourseService {
             .then(function (response) {
                 return response.json();
             });
-    }
-
-    sortedCourses() {
-        return fetch(COURSE_API_URL + "/sorted")
-            .then(function (response) {
-                return response.json();
-            })
     }
 
      createCourse(course) {

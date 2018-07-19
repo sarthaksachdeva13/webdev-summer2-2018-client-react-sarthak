@@ -1,17 +1,51 @@
+
+#topic-pills {
+    padding-top: 10px;
+    border-color: darkred;
+    background-color: rgb(211,211,211);
+
+}
+
+#new-course {
+    padding-top: 10px;
+}
+#moduleListItem {
+    background-color: rgb(211,211,211);
+    margin-bottom: 15px;
+}
+#lesson-tab {
+
+    border-color: darkred;
+    margin-right: 10px;
+}
+
+#topic {
+    background-color: #f1f1f1;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+
+.input-group{
+    border-radius: 10px;
+}
+
 body{
-    background-color: rgb(255,245,238);
+    background-color: rgb(245,245,245);
 }
 
 h1{
     text-align: center;
     font-family: 'Cabin Sketch', cursive;
     font-size: 57px;
+    color : maroon;
 }
 
 
 .fa-trash
 {
-    margin-right: 5px;
+    margin: 5px;
+    cursor:pointer;
 }
 
 .card
@@ -22,3 +56,4 @@ h1{
 #addModuleInputGroup{
     padding-bottom: 10px;
 }
+

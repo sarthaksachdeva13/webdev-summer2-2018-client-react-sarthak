@@ -1,26 +1,24 @@
-import React, {Component} from 'react';
-import ModuleListItem from '../components/ModuleListItem'
+import React, {Component} from "react";
+import ModuleListItem from '../components/ModuleListItem';
 import ModuleService from '../services/ModuleServiceClient';
 import ModuleEditor from './ModuleEditor';
 import {BrowserRouter as Router, Route} from 'react-router-dom'
 import '../stylesheet.css';
-import '../../node_modules/bootstrap/dist/css/bootstrap.css';
-
 
 class ModuleList extends Component {
+
     constructor() {
         super();
         this.state = {
             courseId: '',
-            module: {title: '', id: ''},
+            module: {title: ''},
             modules: []
         };
-
-        this.moduleService = ModuleService.instance;
         this.setCourseId = this.setCourseId.bind(this);
         this.titleChanged = this.titleChanged.bind(this);
         this.createModule = this.createModule.bind(this);
         this.deleteModule = this.deleteModule.bind(this);
+        this.moduleService = ModuleService.instance;
     }
 
     componentDidMount() {
@@ -36,29 +34,6 @@ class ModuleList extends Component {
         this.setState({courseId: courseId});
     }
 
-    renderListOfModules() {
-        return this.state.modules
-            .map((module) =>
-                <ModuleListItem
-                    module={module}
-                    key={module.id}
-                    courseId={this.state.courseId}
-                    delete={this.deleteModule}/>
-            );
-    }
-
-
-    findAllModulesForCourse(courseId) {
-        this.moduleService
-            .findAllModulesForCourse(courseId)
-            .then((modules) => this.setModules(modules));
-    }
-
-    setModules(modules) {
-        this.setState({modules: modules})
-    }
-
-
     titleChanged(event) {
         this.setState({module: {title: event.target.value}});
     }
@@ -66,38 +41,56 @@ class ModuleList extends Component {
     createModule() {
         this.moduleService.createModule(this.state.courseId, this.state.module)
             .then(() => {
-                this.findAllModulesForCourse(this.state.courseId);
+                this.findAllModulesForCourse(this.state.courseId)
             });
     }
 
-
     deleteModule(moduleId) {
-        this.moduleService.deleteModule(moduleId)
-            .then(() =>
-                this.findAllModulesForCourse(this.state.courseId)
+        let popupWindow = window.confirm("Are you sure you want to delete this module?");
+        if (popupWindow) {
+            this.moduleService
+                .deleteModule(moduleId)
+                .then(() => {
+                    this.findAllModulesForCourse
+                    (this.state.courseId)
+                });
+        }
+    }
+
+    findAllModulesForCourse(courseId) {
+        this.moduleService
+            .findAllModulesForCourse(courseId)
+            .then((modules) =>
+                this.setState({modules: modules})
             );
     }
 
+    renderListOfModules() {
+        return this.state.modules.map((module) =>
+            <ModuleListItem key={module.id}
+                            delete={this.deleteModule}
+                            courseId={this.state.courseId}
+                            module={module}/>);
+    }
 
     render() {
         return (
             <Router>
                 <div className="row">
-                    <div id="module-list" className="col-4">
+                    <div className="col-4">
                         <div className="input-group mb-3">
                             <input className="form-control"
-                                   placeholder="Enter a module"
-                                   aria-label="New Module" aria-describedby="basic-addon2"
-                                   onChange={this.titleChanged} value={this.state.module.title}/>
+                                   placeholder="Enter a name for the Module"
+                                   onChange={this.titleChanged}
+                                   value={this.state.module.title}/>
                             <div className="input-group-append">
-                                <button onClick={this.createModule}
-                                        className="btn btn-info">
-                                    <i className="fa fa-plus"/>
+                                <button className="btn btn-success"
+                                        onClick={this.createModule}>+
                                 </button>
                             </div>
                         </div>
-
-                        <div className="nav flex-column nav-pills" id="v-pills-tab" role="tablist"
+                        <div className="nav flex-column nav-pills"
+                             role="tablist"
                              aria-orientation="vertical">
                             {this.renderListOfModules()}
                         </div>
@@ -112,7 +105,7 @@ class ModuleList extends Component {
             </Router>
         );
     }
-}
 
+}
 
 export default ModuleList;
