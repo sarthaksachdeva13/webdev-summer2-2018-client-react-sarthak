@@ -1,5 +1,5 @@
-const TOPIC_API_URL = 'https://localhost:8080/api/lesson/LID/topic';
-const TOPIC_URL = 'https://localhost:8080/api/topic';
+const TOPIC_API_URL = 'https://localhost:8080/api/course/CID/module/MID/lesson/LID/topic';
+const TOPIC_URL = 'https://localhost:8080/api/topic/TID';
 
 let _singleton = Symbol();
 
@@ -16,28 +16,59 @@ export default class TopicService {
         return this[_singleton]
     }
 
-    createTopic(lessonId, topic) {
-        return fetch(TOPIC_API_URL.replace('LID', lessonId), {
-            body: JSON.stringify(topic),
-            headers: {'Content-Type': 'application/json'},
-            method: 'POST'
-        }).then(function (response) {
+    findAllTopics() {
+        return fetch(TOPIC_URL)
+            .then(function (response) {
+                return response.json();
+            });
+    }
+
+    findTopicById(topicId) {
+        return fetch(TOPIC_URL.replace('TID', topicId))
+            .then(function (response) {
+                return response.json();
+            });
+    }
+
+
+    createTopic(courseId, moduleId, lessonId, topic) {
+        return fetch(TOPIC_API_URL.replace('CID', courseId).replace('MID', moduleId).replace('LID', lessonId),
+            {
+                body: JSON.stringify(topic),
+                headers: {'Content-Type': 'application/json'},
+                method: 'POST'
+            }).then(function (response) {
             return response.json();
         })
     }
 
-    findAllTopicsForLesson(lessonId) {
-        return fetch(TOPIC_API_URL.replace('LID', lessonId))
+
+    findAllTopicsForLesson(courseId, moduleId, lessonId) {
+        return fetch(
+            TOPIC_API_URL.replace('CID', courseId).replace('MID', moduleId).replace('LID', lessonId))
             .then(function (response) {
                 return response.json();
-            })
+            });
     }
 
     deleteTopic(topicId) {
-        return fetch(TOPIC_URL + "/" + topicId, {
-            method: 'DELETE'
-        }).then(function (response) {
-            return response;
+        return fetch(TOPIC_URL.replace('TID', topicId), {
+            method: 'delete'
         })
+    }
+
+
+    updateTopic(topicId, topic) {
+        return fetch(TOPIC_URL.replace('TID', topicId),
+            {
+                method: 'PUT',
+                body: JSON.stringify(topic),
+                headers: {
+                    'content-type': 'application/json'
+                }
+            })
+            .then(function (response) {
+                return response.json();
+            });
     }
 }
