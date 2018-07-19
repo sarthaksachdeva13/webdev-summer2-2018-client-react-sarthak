@@ -1,5 +1,6 @@
-const LESSON_API_URL = 'https://localhost:8080/api/lesson';
-const LESSON_URL = 'https://localhost:8080//api/course/CID/module/MID/lesson';
+const LESSON_API_URL = 'https://localhost:8080//api/course/CID/module/MID/lesson';
+const LESSON_URL = 'https://localhost:8080/api/lesson/LID';
+
 
 export default class LessonService {
     constructor(singletonToken) {
@@ -15,21 +16,28 @@ export default class LessonService {
     }
 
     findAllLessonsForModule(courseId, moduleId) {
-        return fetch(LESSON_URL.replace('CID', courseId).replace('MID', moduleId))
+        return fetch(LESSON_API_URL.replace('CID', courseId).replace('MID', moduleId))
             .then(function (response) {
                 return response.json();
             })
+    }
+
+    findAllLessons() {
+        return fetch(LESSON_URL)
+            .then(function (response) {
+                return response.json();
+            });
     }
 
     findLessonById(lessonId) {
-        return fetch(LESSON_API_URL + "/" + lessonId)
-            .then(function (response) {
+        return fetch(LESSON_URL.replace('LID', lessonId))
+            .then(function(response) {
                 return response.json();
-            })
+            });
     }
 
     createLesson(courseId, moduleId, lesson){
-        return fetch(LESSON_URL.replace('CID', courseId).replace('MID', moduleId),
+        return fetch(LESSON_API_URL.replace('CID', courseId).replace('MID', moduleId),
             {
                 body: JSON.stringify(lesson),
                 headers:
@@ -41,12 +49,28 @@ export default class LessonService {
     }
 
     deleteLesson(lessonId) {
-        return fetch(LESSON_API_URL + "/" + lessonId, {
-            method: 'DELETE'
-        }).then(function (response) {
-            return response;
-        });
+        return fetch(LESSON_URL.replace
+        ('LID', lessonId), {
+            method: 'delete'
+        })
     }
+
+    updateLesson(lessonId, lesson) {
+        return fetch(LESSON_URL.replace
+            ('LID', lessonId),
+            {
+                method : 'PUT',
+                body : JSON.stringify(lesson),
+                headers: {
+                    'content-type':'application/json'
+                }})
+            .then(function(response) {
+                return response.json();
+            });
+    }
+
+
+
 
 }
 

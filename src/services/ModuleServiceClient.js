@@ -1,5 +1,5 @@
 const MODULE_API_URL = 'http://localhost:8080/api/course/CID/module';
-const MODULE_URL = 'http://localhost:8080/api/module/MODULE_ID';
+const MODULE_URL = 'http://localhost:8080/api/module/MID';
 
 let _singleton = Symbol();
 
@@ -17,7 +17,21 @@ export default class ModuleService {
         return this[_singleton]
     }
 
-     createModule(courseId, module) {
+    findAllModules() {
+        return fetch(MODULE_URL)
+            .then(function (response) {
+                return response.json();
+            });
+    }
+
+    findModuleById(moduleId) {
+        return fetch(MODULE_URL.replace('MID', moduleId))
+            .then(function (response) {
+                return response.json();
+            });
+    }
+
+    createModule(courseId, module) {
         return fetch(MODULE_API_URL.replace('CID', courseId),
             {
                 body: JSON.stringify(module),
@@ -28,10 +42,10 @@ export default class ModuleService {
         })
     }
 
-     findAllModulesForCourse(courseId) {
+    findAllModulesForCourse(courseId) {
         return fetch(
             MODULE_API_URL
-                .replace('COURSE_ID', courseId))
+                .replace('CID', courseId))
             .then(function (response) {
                 return response.json();
             })
@@ -39,9 +53,20 @@ export default class ModuleService {
 
     deleteModule(moduleId) {
         return fetch(MODULE_URL.replace
-        ('MODULE_ID', moduleId), {
+        ('MID', moduleId), {
             method: 'delete'
         })
+    }
+
+    updateModule(moduleId, module) {
+        return fetch(MODULE_URL.replace('MID', moduleId), {
+            body : JSON.stringify(module),
+            method : 'PUT',
+            headers: {
+                'content-type':'application/json'
+            }}).then(function (response) {
+            return response.json();
+        });
     }
 
 }

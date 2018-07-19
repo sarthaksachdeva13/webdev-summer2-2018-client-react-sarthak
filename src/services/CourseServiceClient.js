@@ -56,16 +56,15 @@ class CourseService {
             })
     }
 
-     updateCourse(course) {
-        return fetch(COURSE_API_URL, {
-            body: JSON.stringify(course),
+     updateCourse(courseId, course) {
+         return fetch(COURSE_API_URL + '/' + courseId, {
+            body : JSON.stringify(course),
+            method : 'PUT',
             headers: {
-                'Content-Type': 'application/json'
-            },
-            method: 'PUT'
-        }).then(function (response) {
+                'content-type':'application/json'
+            }}).then(function (response) {
             return response.json();
-        })
+        });
     }
 
 
