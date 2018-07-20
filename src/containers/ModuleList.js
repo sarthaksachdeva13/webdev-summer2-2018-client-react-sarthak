@@ -90,7 +90,6 @@ class ModuleList extends Component {
                             </div>
                         </div>
                         <div className="nav flex-column nav-pills"
-                             role="tablist"
                              aria-orientation="vertical">
                             {this.renderListOfModules()}
                         </div>

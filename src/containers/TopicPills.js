@@ -1,15 +1,11 @@
+import React, {Component} from "react";
 import TopicPillItem from '../components/TopicPillItem';
 import TopicCard from './TopicCard';
-import React from "react";
-import '../../node_modules/bootstrap/dist/css/bootstrap.css';
-import '../../node_modules/font-awesome/css/font-awesome.min.css';
-import '../stylesheet.css';
 import TopicService from '../services/TopicServiceClient';
-import {BrowserRouter as Router, Route}
-    from 'react-router-dom'
+import {BrowserRouter as Router, Route} from 'react-router-dom';
+import '../stylesheet.css';
 
-export default class TopicPills
-    extends React.Component {
+class TopicPills extends Component {
     constructor() {
         super();
         this.state = {
@@ -19,13 +15,14 @@ export default class TopicPills
             topic: {title: ''},
             topics: []
         };
+
+        this.topicService = TopicService.instance;
         this.setCourseId = this.setCourseId.bind(this);
         this.setModuleId = this.setModuleId.bind(this);
         this.setLessonId = this.setLessonId.bind(this);
         this.titleChanged = this.titleChanged.bind(this);
         this.createTopic = this.createTopic.bind(this);
         this.deleteTopic = this.deleteTopic.bind(this);
-        this.topicService = TopicService.instance;
     }
 
     componentDidMount() {
@@ -60,10 +57,9 @@ export default class TopicPills
     createTopic() {
         this.topicService.createTopic
         (this.state.courseId, this.state.moduleId, this.state.lessonId, this.state.topic)
-            .then(() => {
+            .then(() =>
                 this.findAllTopicsForLesson
-                (this.state.courseId, this.state.moduleId, this.state.lessonId)
-            });
+                (this.state.courseId, this.state.moduleId, this.state.lessonId));
     }
 
     deleteTopic(topicId) {
@@ -85,16 +81,13 @@ export default class TopicPills
     }
 
     renderListOfTopics() {
-        let topics = this.state.topics.map((topic) => {
-            return (<TopicPillItem key={topic.id}
-                                   delete={this.deleteTopic}
-                                   moduleId={this.state.moduleId}
-                                   courseId={this.state.courseId}
-                                   lessonId={this.state.lessonId}
-                                   topic={topic}/>)
-        });
-        return (topics);
-
+        return this.state.topics.map((topic) =>
+            <TopicPillItem key={topic.id}
+                           moduleId={this.state.moduleId}
+                           courseId={this.state.courseId}
+                           lessonId={this.state.lessonId}
+                           delete={this.deleteTopic}
+                           topic={topic}/>);
     }
 
     render() {
@@ -109,11 +102,12 @@ export default class TopicPills
                         </div>
                         <div className="col">
                             <div className="input-group mb-3">
-                                <input type="text" className="form-control" placeholder="New Topic Title..."
-                                       aria-label="New Topic" aria-describedby="basic-addon2"
-                                       onChange={this.titleChanged} value={this.state.topic.title}/>
+                                <input className="form-control"
+                                       placeholder="Enter topic title"
+                                       onChange={this.titleChanged}
+                                       value={this.state.topic.title}/>
                                 <div className="input-group-append">
-                                    <button type="button" className="btn btn-outline-primary"
+                                    <button className="btn btn-primary"
                                             onClick={this.createTopic}>+
                                     </button>
                                 </div>
@@ -126,6 +120,7 @@ export default class TopicPills
                 </div>
             </Router>
         )
-
     }
 }
+
+export default TopicPills;

@@ -1,3 +1,14 @@
+body{
+    background-color: rgb(245,245,245);
+}
+
+h1{
+    text-align: center;
+    font-family: 'Cabin Sketch', cursive;
+    font-size: 57px;
+    color : maroon;
+}
+
 
 #topic-pills {
     padding-top: 10px;
@@ -28,17 +39,6 @@
 
 .input-group{
     border-radius: 10px;
-}
-
-body{
-    background-color: rgb(245,245,245);
-}
-
-h1{
-    text-align: center;
-    font-family: 'Cabin Sketch', cursive;
-    font-size: 57px;
-    color : maroon;
 }
 
 

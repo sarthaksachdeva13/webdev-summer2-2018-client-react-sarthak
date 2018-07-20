@@ -14,7 +14,6 @@ class TopicCard
 
     }
 
-
     componentDidMount() {
         this.setTopicId(this.props.match.params.topicId);
     }
@@ -30,7 +29,7 @@ class TopicCard
     render() {
         return (
             <div className="card bg-light mb-3">
-                <div className="card-header">Topic {this.state.topicId}</div>
+                <div className="card-header">Topic: {this.state.topicId}</div>
                 <div className="card-body">
                     <p className="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi convallis
                         sollicitudin enim id tincidunt. Fusce ultricies accumsan nisi, id lacinia ligula consequat in.

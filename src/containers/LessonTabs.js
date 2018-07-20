@@ -2,7 +2,7 @@ import LessonTabItem from '../components/LessonTabItem';
 import React, {Component} from "react";
 import LessonService from '../services/LessonServiceClient';
 import LessonEditor from './LessonEditor';
-import {BrowserRouter as Router, Route} from 'react-router-dom'
+import {BrowserRouter as Router, Route} from 'react-router-dom';
 
 export default class LessonTabs extends Component {
     constructor() {
@@ -13,12 +13,13 @@ export default class LessonTabs extends Component {
             lesson: {title: ''},
             lessons: []
         };
+
+        this.lessonService = LessonService.instance;
         this.setCourseId = this.setCourseId.bind(this);
         this.setModuleId = this.setModuleId.bind(this);
         this.titleChanged = this.titleChanged.bind(this);
         this.createLesson = this.createLesson.bind(this);
         this.deleteLesson = this.deleteLesson.bind(this);
-        this.lessonService = LessonService.instance;
     }
 
     componentDidMount() {
@@ -48,26 +49,26 @@ export default class LessonTabs extends Component {
         this.lessonService.createLesson
         (this.state.courseId, this.state.moduleId, this.state.lesson)
             .then(() => this.findAllLessonsForModule(this.state.courseId, this.state.moduleId));
+        console.log(this.state.lesson);
     }
 
     deleteLesson(lessonId) {
-        this.lessonService
-            .deleteLesson(lessonId)
-            .then(() => this.findAllLessonsForModule(this.state.courseId, this.state.moduleId));
-    }
-
-    setLessons(lessons) {
-        this.setState({lessons: lessons})
+        let popupWindow = window.confirm("Are you sure you want to delete this lesson?");
+        if (popupWindow) {
+            this.lessonService
+                .deleteLesson(lessonId)
+                .then(() => this.findAllLessonsForModule(this.state.courseId, this.state.moduleId));
+        }
     }
 
     findAllLessonsForModule(courseId, moduleId) {
         this.lessonService
             .findAllLessonsForModule(courseId, moduleId)
-            .then((lessons) => this.setLessons(lessons));
+            .then((lessons) => this.setState({lessons: lessons}));
     }
 
     renderListOfLessons() {
-        this.state.lessons.map((lesson) =>
+        return this.state.lessons.map((lesson) =>
             <LessonTabItem key={lesson.id}
                            delete={this.deleteLesson}
                            moduleId={this.state.moduleId}

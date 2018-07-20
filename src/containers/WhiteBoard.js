@@ -13,7 +13,6 @@ class WhiteBoard extends Component {
         return (
             <Router>
                 <div className="container-fluid">
-
                     <Link to="/courses">
                         <h1>WhiteBoard</h1>
                     </Link>
