@@ -94,24 +94,22 @@ class TopicPills extends Component {
         return (
             <Router>
                 <div>
-                    <div id="topic-pills" className="row">
+                    <div className="row">
+                        <div className="input-group topicIn">
+                            <input id="topicInput"
+                                   className="form-control"
+                                   placeholder="Enter topic title"
+                                   onChange={this.titleChanged}
+                                   value={this.state.topic.title}/>
+                            <button id="topicBtn"
+                                    className="btn btn-info"
+                                    onClick={this.createTopic}>+
+                            </button>
+                        </div>
                         <div className="col-9">
                             <ul className="nav nav-pills">
                                 {this.renderListOfTopics()}
                             </ul>
-                        </div>
-                        <div className="col">
-                            <div className="input-group mb-3">
-                                <input className="form-control"
-                                       placeholder="Enter topic title"
-                                       onChange={this.titleChanged}
-                                       value={this.state.topic.title}/>
-                                <div className="input-group-append">
-                                    <button className="btn btn-primary"
-                                            onClick={this.createTopic}>+
-                                    </button>
-                                </div>
-                            </div>
                         </div>
                     </div>
                     <Route path="/course/:courseId/module/:moduleId/lesson/:lessonId/topic/:topicId"

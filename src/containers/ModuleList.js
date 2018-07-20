@@ -77,17 +77,18 @@ class ModuleList extends Component {
         return (
             <Router>
                 <div className="row">
-                    <div className="col-4">
-                        <div className="input-group mb-3">
-                            <input className="form-control"
+                    <div id="borderLine" className="col-4">
+                        <div className="input-group">
+                            <input id="moduleInput"
+                                   className="form-control"
                                    placeholder="Enter a name for the Module"
                                    onChange={this.titleChanged}
                                    value={this.state.module.title}/>
-                            <div className="input-group-append">
-                                <button className="btn btn-success"
-                                        onClick={this.createModule}>+
-                                </button>
-                            </div>
+                            <button id="moduleBtn"
+                                    className="btn btn-success"
+                                    onClick={this.createModule}>+
+                            </button>
+
                         </div>
                         <div className="nav flex-column nav-pills"
                              aria-orientation="vertical">

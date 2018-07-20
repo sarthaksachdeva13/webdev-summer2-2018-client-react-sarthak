@@ -81,15 +81,15 @@ export default class LessonTabs extends Component {
             <Router>
                 <div>
                     <div className="input-group">
-                        <input className="form-control"
+                        <input id="lessonInput"
+                               className="form-control"
                                placeholder="Enter Lesson Title"
                                onChange={this.titleChanged}
                                value={this.state.lesson.title}/>
-                        <div className="input-group-append">
-                            <button className="btn btn-warning"
-                                    onClick={this.createLesson}>+
-                            </button>
-                        </div>
+                        <button id="lessonBtn"
+                                className="btn btn-warning"
+                                onClick={this.createLesson}>+
+                        </button>
                     </div>
                     <ul className="nav nav-tabs">{this.renderListOfLessons()}</ul>
                     <Route path="/course/:courseId/module/:moduleId/lesson/:lessonId"

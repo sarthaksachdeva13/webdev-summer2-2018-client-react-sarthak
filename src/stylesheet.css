@@ -1,5 +1,5 @@
 body{
-    background-color: rgb(245,245,245);
+    background-color: rgb(248,248,255);
 }
 
 h1{
@@ -9,38 +9,51 @@ h1{
     color : maroon;
 }
 
-
-#topic-pills {
-    padding-top: 10px;
-    border-color: darkred;
-    background-color: rgb(211,211,211);
-
+#topicInput, #topicBtn, #lessonInput, #lessonBtn, #moduleInput, #moduleBtn
+{
+    border-radius: 20px;
 }
 
-#new-course {
-    padding-top: 10px;
+
+#borderLine{
+
+    border-right: 2px solid #333333;
+
 }
 #moduleListItem {
+
+    border-radius: 20px;
     background-color: rgb(211,211,211);
-    margin-bottom: 15px;
+    margin-top: 15px;
+    margin-left: 15px;
+    width : 60%;
 }
-#lesson-tab {
 
-    border-color: darkred;
+.card{
+    margin-left: 20px;
+}
+
+.topicIn{
+    margin-top:10px;
+    margin-left: 30px;
+    width : 40%;
+}
+
+#lesson-tab
+{
+    margin-top: 10px;
+    border-color: rgb(72,61,139);
     margin-right: 10px;
-}
-
-#topic {
-    background-color: #f1f1f1;
-    border-radius: 5px;
-    margin-right: 10px;
+    background-color: rgb(224,255,255);
 }
 
 
-.input-group{
-    border-radius: 10px;
+#topicPillItem {
+    margin-top: 20px;
+    margin-left: 30px;
+    border-radius: 18px;
+    background-color: rgb(255,228,225);
 }
-
 
 .fa-trash
 {
@@ -50,10 +63,13 @@ h1{
 
 .card
 {
+    margin-top:20px;
+    margin-left: 40px;
     width: 18rem;
 }
 
 #addModuleInputGroup{
+
     padding-bottom: 10px;
 }
 
