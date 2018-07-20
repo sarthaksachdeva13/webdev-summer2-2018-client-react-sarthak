@@ -14,7 +14,7 @@ export default class LessonTabItem
     render() {
 
         return (
-            <a id="lesson-tab" className="nav-link">
+            <div id="lessonTab" className="nav-link">
                 <Link
                     to={`/course/${this.props.courseId}/module/${this.props.moduleId}/lesson/${this.props.lesson.id}`}>
                     {this.props.lesson.title}
@@ -22,7 +22,7 @@ export default class LessonTabItem
                 <span className="float-right" onClick={() => {
                     this.props.delete(this.props.lesson.id)
                 }}><i className="fa fa-trash"/></span>
-            </a>
+            </div>
 
         );
     }

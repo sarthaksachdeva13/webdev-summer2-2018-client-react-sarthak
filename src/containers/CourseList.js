@@ -21,8 +21,8 @@ class CourseList extends React.Component {
         this.setState({
             course: {
                 title: "",
-                created: new Date().toISOString(),
-                modified: new Date().toISOString()
+                created: new Date(),
+                modified: new Date()
             }
         });
     }
@@ -54,8 +54,8 @@ class CourseList extends React.Component {
         this.setState({
             course: {
                 title: event.target.value,
-                created: new Date().toISOString(),
-                modified: new Date().toISOString()
+                created: new Date(),
+                modified: new Date()
             }
         });
     }

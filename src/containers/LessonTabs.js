@@ -57,7 +57,10 @@ export default class LessonTabs extends Component {
         if (popupWindow) {
             this.lessonService
                 .deleteLesson(lessonId)
-                .then(() => this.findAllLessonsForModule(this.state.courseId, this.state.moduleId));
+                .then(() => {
+                    this.findAllLessonsForModule(this.state.courseId, this.state.moduleId);
+                    this.props.history.push(`/course/${this.state.courseId}/module/${this.state.moduleId}`);
+                });
         }
     }
 
@@ -78,25 +81,23 @@ export default class LessonTabs extends Component {
 
     render() {
         return (
-            <Router>
-                <div>
-                    <div className="input-group">
-                        <input id="lessonInput"
-                               className="form-control"
-                               placeholder="Enter Lesson Title"
-                               onChange={this.titleChanged}
-                               value={this.state.lesson.title}/>
-                        <button id="lessonBtn"
-                                className="btn btn-warning"
-                                onClick={this.createLesson}>+
-                        </button>
-                    </div>
-                    <ul className="nav nav-tabs">{this.renderListOfLessons()}</ul>
-                    <Route path="/course/:courseId/module/:moduleId/lesson/:lessonId"
-                           component={LessonEditor}>
-                    </Route>
+            <div>
+                <div className="input-group" id="lessonI">
+                    <input id="lessonInput"
+                           className="form-control"
+                           placeholder="Enter Lesson Title"
+                           onChange={this.titleChanged}
+                           value={this.state.lesson.title}/>
+                    <button id="lessonBtn"
+                            className="btn btn-warning"
+                            onClick={this.createLesson}>+
+                    </button>
                 </div>
-            </Router>
+                <ul className="nav nav-tabs">{this.renderListOfLessons()}</ul>
+                <Route path="/course/:courseId/module/:moduleId/lesson/:lessonId"
+                       component={LessonEditor}>
+                </Route>
+            </div>
 
         );
     }

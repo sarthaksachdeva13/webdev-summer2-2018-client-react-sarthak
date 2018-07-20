@@ -39,7 +39,7 @@ h1{
     width : 40%;
 }
 
-#lesson-tab
+#lessonTab
 {
     margin-top: 10px;
     border-color: rgb(72,61,139);
@@ -47,6 +47,9 @@ h1{
     background-color: rgb(224,255,255);
 }
 
+#lessonI{
+    margin-bottom: 10px;
+}
 
 #topicPillItem {
     margin-top: 20px;

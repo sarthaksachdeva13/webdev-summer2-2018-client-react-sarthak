@@ -32,7 +32,6 @@ class CourseEditor
     setCourseTitle(courseTitle) {
         this.setState({courseTitle: courseTitle});
     }
-
     render() {
         return (
             <div>

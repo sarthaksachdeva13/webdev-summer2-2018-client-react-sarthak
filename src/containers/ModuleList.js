@@ -75,7 +75,6 @@ class ModuleList extends Component {
 
     render() {
         return (
-            <Router>
                 <div className="row">
                     <div id="borderLine" className="col-4">
                         <div className="input-group">
@@ -102,7 +101,6 @@ class ModuleList extends Component {
 
                     </div>
                 </div>
-            </Router>
         );
     }
 

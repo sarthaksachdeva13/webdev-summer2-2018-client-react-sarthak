@@ -92,7 +92,6 @@ class TopicPills extends Component {
 
     render() {
         return (
-            <Router>
                 <div>
                     <div className="row">
                         <div className="input-group topicIn">
@@ -116,7 +115,6 @@ class TopicPills extends Component {
                            component={TopicCard}>
                     </Route>
                 </div>
-            </Router>
         )
     }
 }
