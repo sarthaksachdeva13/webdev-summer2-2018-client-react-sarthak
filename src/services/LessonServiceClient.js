@@ -1,9 +1,8 @@
-let _singleton = Symbol();
-const LESSON_API_URL =
-    'http://localhost:8080/api/course/CID/module/MID/lesson';
-const LESSON_API_URL_ONE =
-    'http://localhost:8080/api/lesson/LID';
 
+const LESSON_API_URL = 'http://localhost:8080/api/course/CID/module/MID/lesson';
+const LESSON_URL = 'http://localhost:8080/api/lesson/LID';
+
+let _singleton = Symbol();
 export default class LessonService {
     constructor(singletonToken) {
         if (_singleton !== singletonToken)
@@ -28,7 +27,7 @@ export default class LessonService {
     }
 
     deleteLesson(lessonId) {
-        return fetch(LESSON_API_URL_ONE.replace
+        return fetch(LESSON_URL.replace
         ('LID', lessonId), {
             method: 'delete'
         })
@@ -43,21 +42,23 @@ export default class LessonService {
     }
 
     findAllLessons() {
-        return fetch(LESSON_API_URL_ONE)
+        return fetch(LESSON_URL)
             .then(function (response) {
                 return response.json();
             });
     }
 
+
+    //Unused Functions
     findLessonById(lessonId) {
-        return fetch(LESSON_API_URL_ONE.replace('LID', lessonId))
+        return fetch(LESSON_URL.replace('LID', lessonId))
             .then(function (response) {
                 return response.json();
             });
     }
 
     updateLesson(lessonId, lesson) {
-        return fetch(LESSON_API_URL_ONE.replace
+        return fetch(LESSON_URL.replace
             ('LID', lessonId),
             {
                 method: 'PUT',

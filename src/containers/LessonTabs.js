@@ -59,7 +59,6 @@ export default class LessonTabs extends Component {
                 .deleteLesson(lessonId)
                 .then(() => {
                     this.findAllLessonsForModule(this.state.courseId, this.state.moduleId);
-                    this.props.history.push(`/course/${this.state.courseId}/module/${this.state.moduleId}`);
                 });
         }
     }

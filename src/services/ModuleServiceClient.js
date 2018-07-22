@@ -17,20 +17,6 @@ export default class ModuleService {
         return this[_singleton]
     }
 
-    findAllModules() {
-        return fetch(MODULE_URL)
-            .then(function (response) {
-                return response.json();
-            });
-    }
-
-    findModuleById(moduleId) {
-        return fetch(MODULE_URL.replace('MID', moduleId))
-            .then(function (response) {
-                return response.json();
-            });
-    }
-
     createModule(courseId, module) {
         return fetch(MODULE_API_URL.replace('CID', courseId),
             {
@@ -58,6 +44,22 @@ export default class ModuleService {
         })
     }
 
+
+    //Unused Functions
+
+    findAllModules() {
+        return fetch(MODULE_URL)
+            .then(function (response) {
+                return response.json();
+            });
+    }
+
+    findModuleById(moduleId) {
+        return fetch(MODULE_URL.replace('MID', moduleId))
+            .then(function (response) {
+                return response.json();
+            });
+    }
     updateModule(moduleId, module) {
         return fetch(MODULE_URL.replace('MID', moduleId), {
             body : JSON.stringify(module),

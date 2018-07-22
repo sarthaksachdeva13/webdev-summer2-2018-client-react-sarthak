@@ -41,6 +41,8 @@ class CourseService {
     }
 
 
+
+    //Unused Functions
      findCourseById(id) {
         return fetch(COURSE_API_URL + "/" + id)
             .then(function (response) {

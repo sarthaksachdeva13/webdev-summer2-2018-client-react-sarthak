@@ -1,53 +1,61 @@
-body{
-    background-color: rgb(248,248,255);
+body {
+    background-color: rgb(248, 248, 255);
 }
 
-h1{
+h1 {
     text-align: center;
     font-family: 'Cabin Sketch', cursive;
     font-size: 57px;
-    color : maroon;
+    color: maroon;
 }
 
-#topicInput, #topicBtn, #lessonInput, #lessonBtn, #moduleInput, #moduleBtn
-{
+#topicInput, #topicBtn, #lessonInput, #lessonBtn, #moduleInput, #moduleBtn {
     border-radius: 20px;
 }
 
-
-#borderLine{
-
-    border-right: 2px solid #333333;
+.leftColumn {
+    width: 33.33%;
+    float: left;
+    box-sizing: border-box;
+    border-right: 2px solid black;
+    padding: 15px 30px;
 
 }
+
+.rightColumn {
+    float: right;
+    width: 66.66%;
+    box-sizing: border-box;
+    padding: 15px 30px;
+}
+
 #moduleListItem {
 
     border-radius: 20px;
-    background-color: rgb(211,211,211);
+    background-color: rgb(211, 211, 211);
     margin-top: 15px;
     margin-left: 15px;
-    width : 60%;
+    width: 60%;
 }
 
-.card{
+.card {
     margin-left: 20px;
 }
 
-.topicIn{
-    margin-top:10px;
-    margin-left: 30px;
-    width : 40%;
-}
-
-#lessonTab
-{
+.topicIn {
     margin-top: 10px;
-    border-color: rgb(72,61,139);
-    margin-right: 10px;
-    background-color: rgb(224,255,255);
+    margin-left: 30px;
+    width: 40%;
 }
 
-#lessonI{
+#lessonTab {
+    margin-top: 10px;
+    border-color: rgb(72, 61, 139);
+    margin-right: 10px;
+    background-color: rgb(224, 255, 255);
+}
+
+#lessonI {
     margin-bottom: 10px;
 }
 
@@ -55,23 +63,21 @@ h1{
     margin-top: 20px;
     margin-left: 30px;
     border-radius: 18px;
-    background-color: rgb(255,228,225);
+    background-color: rgb(255, 228, 225);
 }
 
-.fa-trash
-{
+.fa-trash {
     margin: 5px;
-    cursor:pointer;
+    cursor: pointer;
 }
 
-.card
-{
-    margin-top:20px;
+.card {
+    margin-top: 20px;
     margin-left: 40px;
     width: 18rem;
 }
 
-#addModuleInputGroup{
+#addModuleInputGroup {
 
     padding-bottom: 10px;
 }

@@ -76,7 +76,7 @@ class ModuleList extends Component {
     render() {
         return (
                 <div className="row">
-                    <div id="borderLine" className="col-4">
+                    <div className="leftColumn">
                         <div className="input-group">
                             <input id="moduleInput"
                                    className="form-control"
@@ -87,14 +87,13 @@ class ModuleList extends Component {
                                     className="btn btn-success"
                                     onClick={this.createModule}>+
                             </button>
-
                         </div>
                         <div className="nav flex-column nav-pills"
                              aria-orientation="vertical">
                             {this.renderListOfModules()}
                         </div>
                     </div>
-                    <div className="col-8">
+                    <div className="rightColumn">
                         <Route path="/course/:courseId/module/:moduleId"
                                component={ModuleEditor}>
                         </Route>

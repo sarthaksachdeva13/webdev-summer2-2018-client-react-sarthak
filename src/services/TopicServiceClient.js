@@ -16,13 +16,6 @@ export default class TopicService {
         return this[_singleton]
     }
 
-    findAllTopics() {
-        return fetch(TOPIC_URL)
-            .then(function (response) {
-                return response.json();
-            });
-    }
-
     findTopicById(topicId) {
         return fetch(TOPIC_URL.replace('TID', topicId))
             .then(function (response) {
@@ -51,10 +44,23 @@ export default class TopicService {
             });
     }
 
+
+
     deleteTopic(topicId) {
         return fetch(TOPIC_URL.replace('TID', topicId), {
             method: 'delete'
         })
+    }
+
+
+    //Unused Functions
+
+
+    findAllTopics() {
+        return fetch(TOPIC_URL)
+            .then(function (response) {
+                return response.json();
+            });
     }
 
 
