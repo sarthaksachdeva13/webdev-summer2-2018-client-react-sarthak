@@ -1,4 +1,4 @@
-const COURSE_API_URL = 'https://sarthakwebdevreact.herokuapp.com/api/course';
+const COURSE_API_URL = 'https://sarthakwebdev.herokuapp.com/api/course';
 
 let _singleton = Symbol();
 class CourseService {

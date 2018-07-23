@@ -1,5 +1,5 @@
-const TOPIC_API_URL = 'https://sarthakwebdevreact.herokuapp.com/api/course/CID/module/MID/lesson/LID/topic';
-const TOPIC_URL = 'https://sarthakwebdevreact.herokuapp.com/api/topic/TID';
+const TOPIC_API_URL = 'https://sarthakwebdev.herokuapp.com/api/course/CID/module/MID/lesson/LID/topic';
+const TOPIC_URL = 'https://sarthakwebdev.herokuapp.com/api/topic/TID';
 
 let _singleton = Symbol();
 

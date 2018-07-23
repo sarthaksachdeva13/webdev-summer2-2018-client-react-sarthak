@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import TopicPillItem from '../components/TopicPillItem';
 import TopicCard from './TopicCard';
 import TopicService from '../services/TopicServiceClient';
-import {BrowserRouter as Router, Route} from 'react-router-dom';
+import {BrowserRouter as Route} from 'react-router-dom';
 import '../stylesheet.css';
 
 class TopicPills extends Component {
@@ -81,6 +81,7 @@ class TopicPills extends Component {
     }
 
     renderListOfTopics() {
+        if (this.state.topics)
         return this.state.topics.map((topic) =>
             <TopicPillItem key={topic.id}
                            moduleId={this.state.moduleId}
