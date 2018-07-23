@@ -1,6 +1,7 @@
-const COURSE_API_URL = 'http://localhost:8080/api/course';
+const COURSE_API_URL = 'https://sarthakwebdevreact.herokuapp.com/api/course';
 
 let _singleton = Symbol();
+
 class CourseService {
     constructor(singletonToken) {
         if (_singleton !== singletonToken)
@@ -14,13 +15,17 @@ class CourseService {
     }
 
     findAllCourses() {
-        return fetch(COURSE_API_URL)
-            .then(function (response) {
+        return fetch(COURSE_API_URL , {
+            headers: {
+                'content-Type': 'application/json',
+                'Accept': 'application/json'
+            }
+        }).then(function (response) {
                 return response.json();
             });
     }
 
-     createCourse(course) {
+    createCourse(course) {
         return fetch(COURSE_API_URL, {
             body: JSON.stringify(course),
             headers: {
@@ -32,7 +37,7 @@ class CourseService {
         });
     }
 
-     deleteCourse(courseId) {
+    deleteCourse(courseId) {
         return fetch(COURSE_API_URL + "/" + courseId, {
             method: 'DELETE'
         }).then(function (response) {
@@ -41,22 +46,22 @@ class CourseService {
     }
 
 
-
     //Unused Functions
-     findCourseById(id) {
+    findCourseById(id) {
         return fetch(COURSE_API_URL + "/" + id)
             .then(function (response) {
                 return response.json();
             })
     }
 
-     updateCourse(courseId, course) {
-         return fetch(COURSE_API_URL + '/' + courseId, {
-            body : JSON.stringify(course),
-            method : 'PUT',
+    updateCourse(courseId, course) {
+        return fetch(COURSE_API_URL + '/' + courseId, {
+            body: JSON.stringify(course),
+            method: 'PUT',
             headers: {
-                'content-type':'application/json'
-            }}).then(function (response) {
+                'content-type': 'application/json'
+            }
+        }).then(function (response) {
             return response.json();
         });
     }
