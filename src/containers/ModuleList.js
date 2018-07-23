@@ -51,7 +51,7 @@ class ModuleList extends Component {
             this.moduleService
                 .deleteModule(moduleId)
                 .then(() => {
-                   window.location.replace("/course/"+`${this.state.courseId}`);
+                    window.location.replace("/course/"+`${this.state.courseId}`);
                     this.findAllModulesForCourse
                     (this.state.courseId)
                 });
@@ -76,31 +76,31 @@ class ModuleList extends Component {
 
     render() {
         return (
-            <div className="row">
-                <div className="leftColumn">
-                    <div className="input-group">
-                        <input id="moduleInput"
-                               className="form-control"
-                               placeholder="Enter a name for the Module"
-                               onChange={this.titleChanged}
-                               value={this.state.module.title}/>
-                        <button id="moduleBtn"
-                                className="btn btn-success"
-                                onClick={this.createModule}>+
-                        </button>
+                <div className="row">
+                    <div className="leftColumn">
+                        <div className="input-group">
+                            <input id="moduleInput"
+                                   className="form-control"
+                                   placeholder="Enter a name for the Module"
+                                   onChange={this.titleChanged}
+                                   value={this.state.module.title}/>
+                            <button id="moduleBtn"
+                                    className="btn btn-success"
+                                    onClick={this.createModule}>+
+                            </button>
+                        </div>
+                        <div className="nav flex-column nav-pills"
+                             aria-orientation="vertical">
+                            {this.renderListOfModules()}
+                        </div>
                     </div>
-                    <div className="nav flex-column nav-pills"
-                         aria-orientation="vertical">
-                        {this.renderListOfModules()}
-                    </div>
-                </div>
-                <div className="rightColumn">
-                    <Route path="/course/:courseId/module/:moduleId"
-                           component={ModuleEditor}>
-                    </Route>
+                    <div className="rightColumn">
+                        <Route path="/course/:courseId/module/:moduleId"
+                               component={ModuleEditor}>
+                        </Route>
 
+                    </div>
                 </div>
-            </div>
         );
     }
 

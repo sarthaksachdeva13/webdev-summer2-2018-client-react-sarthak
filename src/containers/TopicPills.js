@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import TopicPillItem from '../components/TopicPillItem';
 import TopicCard from './TopicCard';
 import TopicService from '../services/TopicServiceClient';
-import {BrowserRouter as Route} from 'react-router-dom';
+import {BrowserRouter as Router, Route} from 'react-router-dom';
 import '../stylesheet.css';
 
 class TopicPills extends Component {
@@ -82,41 +82,40 @@ class TopicPills extends Component {
     }
 
     renderListOfTopics() {
-        if (this.state.topics)
-            return this.state.topics.map((topic) =>
-                <TopicPillItem key={topic.id}
-                               moduleId={this.state.moduleId}
-                               courseId={this.state.courseId}
-                               lessonId={this.state.lessonId}
-                               delete={this.deleteTopic}
-                               topic={topic}/>);
+        return this.state.topics.map((topic) =>
+            <TopicPillItem key={topic.id}
+                           moduleId={this.state.moduleId}
+                           courseId={this.state.courseId}
+                           lessonId={this.state.lessonId}
+                           delete={this.deleteTopic}
+                           topic={topic}/>);
     }
 
     render() {
         return (
-            <div>
-                <div className="row">
-                    <div className="input-group topicIn">
-                        <input id="topicInput"
-                               className="form-control"
-                               placeholder="Enter topic title"
-                               onChange={this.titleChanged}
-                               value={this.state.topic.title}/>
-                        <button id="topicBtn"
-                                className="btn btn-info"
-                                onClick={this.createTopic}>+
-                        </button>
+                <div>
+                    <div className="row">
+                        <div className="input-group topicIn">
+                            <input id="topicInput"
+                                   className="form-control"
+                                   placeholder="Enter topic title"
+                                   onChange={this.titleChanged}
+                                   value={this.state.topic.title}/>
+                            <button id="topicBtn"
+                                    className="btn btn-info"
+                                    onClick={this.createTopic}>+
+                            </button>
+                        </div>
+                        <div className="col-9">
+                            <ul className="nav nav-pills">
+                                {this.renderListOfTopics()}
+                            </ul>
+                        </div>
                     </div>
-                    <div className="col-9">
-                        <ul className="nav nav-pills">
-                            {this.renderListOfTopics()}
-                        </ul>
-                    </div>
+                    <Route path="/course/:courseId/module/:moduleId/lesson/:lessonId/topic/:topicId"
+                           component={TopicCard}>
+                    </Route>
                 </div>
-                <Route path="/course/:courseId/module/:moduleId/lesson/:lessonId/topic/:topicId"
-                       component={TopicCard}>
-                </Route>
-            </div>
         )
     }
 }

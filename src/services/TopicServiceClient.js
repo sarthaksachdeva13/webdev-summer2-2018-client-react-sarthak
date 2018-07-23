@@ -54,8 +54,6 @@ export default class TopicService {
 
 
     //Unused Functions
-
-
     findAllTopics() {
         return fetch(TOPIC_URL)
             .then(function (response) {

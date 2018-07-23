@@ -1,8 +1,5 @@
 import React, {Component} from "react";
 import ModuleList from "./ModuleList";
-import ModuleEditor from "./ModuleEditor";
-
-import {BrowserRouter as Router, Route} from "react-router-dom";
 
 class CourseEditor
     extends Component {
@@ -35,15 +32,12 @@ class CourseEditor
     setCourseTitle(courseTitle) {
         this.setState({courseTitle: courseTitle});
     }
-
     render() {
         return (
-
             <div>
                 <h3>Module List for Course {this.state.courseTitle}</h3>
                 <ModuleList courseId={this.state.courseId}/>
             </div>
-
 
         );
     }
