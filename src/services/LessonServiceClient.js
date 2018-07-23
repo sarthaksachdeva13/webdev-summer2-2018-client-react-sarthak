@@ -1,6 +1,6 @@
 
-const LESSON_API_URL = 'https://sarthakwebdevreact.herokuapp.com/api/course/CID/module/MID/lesson';
-const LESSON_URL = 'https://sarthakwebdevreact.herokuapp.com/api/lesson/LID';
+const LESSON_API_URL = 'http://localhost:8080/api/course/CID/module/MID/lesson';
+const LESSON_URL = 'http://localhost:8080/api/lesson/LID';
 
 let _singleton = Symbol();
 export default class LessonService {
