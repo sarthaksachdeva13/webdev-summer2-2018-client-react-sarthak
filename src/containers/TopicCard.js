@@ -37,7 +37,7 @@ class TopicCard
     render() {
         return (
             <div className="card">
-                <div className="card-header">Topic Content</div>
+                <div className="card-header">Topic Content // ID: {this.state.topicId}</div>
                 <div className="card-body">
                     <p className="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi convallis
                         sollicitudin enim id tincidunt. Fusce ultricies accumsan nisi, id lacinia ligula consequat in.
