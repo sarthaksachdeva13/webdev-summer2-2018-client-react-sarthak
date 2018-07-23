@@ -68,6 +68,7 @@ class TopicPills extends Component {
             this.topicService
                 .deleteTopic(topicId)
                 .then(() => {
+                    window.location.replace("/course/" + `${this.state.courseId}` + "/module/" + `${this.state.moduleId}` + "/lesson/" + `${this.state.lessonId}`);
                     this.findAllTopicsForLesson
                     (this.state.courseId, this.state.moduleId, this.state.lessonId)
                 });
@@ -82,40 +83,40 @@ class TopicPills extends Component {
 
     renderListOfTopics() {
         if (this.state.topics)
-        return this.state.topics.map((topic) =>
-            <TopicPillItem key={topic.id}
-                           moduleId={this.state.moduleId}
-                           courseId={this.state.courseId}
-                           lessonId={this.state.lessonId}
-                           delete={this.deleteTopic}
-                           topic={topic}/>);
+            return this.state.topics.map((topic) =>
+                <TopicPillItem key={topic.id}
+                               moduleId={this.state.moduleId}
+                               courseId={this.state.courseId}
+                               lessonId={this.state.lessonId}
+                               delete={this.deleteTopic}
+                               topic={topic}/>);
     }
 
     render() {
         return (
-                <div>
-                    <div className="row">
-                        <div className="input-group topicIn">
-                            <input id="topicInput"
-                                   className="form-control"
-                                   placeholder="Enter topic title"
-                                   onChange={this.titleChanged}
-                                   value={this.state.topic.title}/>
-                            <button id="topicBtn"
-                                    className="btn btn-info"
-                                    onClick={this.createTopic}>+
-                            </button>
-                        </div>
-                        <div className="col-9">
-                            <ul className="nav nav-pills">
-                                {this.renderListOfTopics()}
-                            </ul>
-                        </div>
+            <div>
+                <div className="row">
+                    <div className="input-group topicIn">
+                        <input id="topicInput"
+                               className="form-control"
+                               placeholder="Enter topic title"
+                               onChange={this.titleChanged}
+                               value={this.state.topic.title}/>
+                        <button id="topicBtn"
+                                className="btn btn-info"
+                                onClick={this.createTopic}>+
+                        </button>
                     </div>
-                    <Route path="/course/:courseId/module/:moduleId/lesson/:lessonId/topic/:topicId"
-                           component={TopicCard}>
-                    </Route>
+                    <div className="col-9">
+                        <ul className="nav nav-pills">
+                            {this.renderListOfTopics()}
+                        </ul>
+                    </div>
                 </div>
+                <Route path="/course/:courseId/module/:moduleId/lesson/:lessonId/topic/:topicId"
+                       component={TopicCard}>
+                </Route>
+            </div>
         )
     }
 }
