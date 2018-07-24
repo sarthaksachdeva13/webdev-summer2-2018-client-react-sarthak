@@ -1,6 +1,5 @@
 import React, {Component} from "react";
 import ModuleList from "./ModuleList";
-import CourseService from '../services/CourseServiceClient';
 
 class CourseEditor
     extends Component {
@@ -9,45 +8,30 @@ class CourseEditor
 
         this.state = {
             courseId: '',
-            courseTitle: '',
-            course: ''
+            courseTitle: ''
         };
-        this.courseService = CourseService.instance;
 
         this.setCourseId = this.setCourseId.bind(this);
-        this.findCourseById = this.findCourseById.bind(this);
-
+        this.setCourseTitle = this.setCourseTitle.bind(this);
     }
 
     componentDidMount() {
         this.setCourseId(this.props.match.params.courseId);
+        this.setCourseTitle(this.props.match.params.courseTitle);
     }
 
     componentWillReceiveProps(newProps) {
         this.setCourseId(newProps.match.params.courseId);
+        this.setCourseTitle(newProps.match.params.courseTitle);
     }
 
     setCourseId(courseId) {
-        this.findCourseById(courseId);
-        this.setState({
-            courseId: courseId
-        });
+        this.setState({courseId: courseId});
     }
 
-
-    findCourseById(courseId) {
-        return this.courseService.findCourseById(
-            courseId
-        ).then((course) => {
-            this.setState({
-                course: course
-            })
-
-        });
-
+    setCourseTitle(courseTitle) {
+        this.setState({courseTitle: courseTitle});
     }
-
-
     render() {
         return (
             <div>

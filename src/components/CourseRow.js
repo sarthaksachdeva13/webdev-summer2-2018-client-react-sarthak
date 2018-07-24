@@ -21,12 +21,6 @@ class CourseRow extends React.Component {
                         this.props.delete(this.props.course.id)
                     }}><i className="fa-2x fa fa-trash"/></span>
                 </td>
-                <td>
-                    <span onClick={() => {
-                        this.props.edit(this.props.course.id,
-                            this.props.course.title)
-                    }}><i className="fa-2x fa fa-pencil"/></span>
-                </td>
             </tr>
 
         )
