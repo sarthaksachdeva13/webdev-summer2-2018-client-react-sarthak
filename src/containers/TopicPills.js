@@ -1,8 +1,8 @@
 import React, {Component} from "react";
 import TopicPillItem from '../components/TopicPillItem';
-import TopicCard from './TopicCard';
 import TopicService from '../services/TopicServiceClient';
-import {BrowserRouter as Router, Route} from 'react-router-dom';
+import {BrowserRouter as Route} from 'react-router-dom';
+import WidgetListEditor from './WidgetListEditor';
 import '../stylesheet.css';
 
 class TopicPills extends Component {
