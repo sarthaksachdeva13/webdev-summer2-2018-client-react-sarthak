@@ -113,7 +113,7 @@ class TopicPills extends Component {
                         </div>
                     </div>
                     <Route path="/course/:courseId/module/:moduleId/lesson/:lessonId/topic/:topicId"
-                           component={TopicCard}>
+                           component={WidgetListEditor}>
                     </Route>
                 </div>
         )
