@@ -3,6 +3,9 @@ import {connect} from 'react-redux'
 import {DELETE_WIDGET} from "../constants/index"
 import * as actions from '../actions'
 import * as widgetConstant from '../constants'
+import {changeListName} from "../actions";
+import {changeListText} from "../actions";
+import {changeListType} from "../actions";
 
 
 //Heading Widget
@@ -282,3 +285,129 @@ const stateToPropertyMapperImage = state => (
 );
 
 const ImageContainer = connect(stateToPropertyMapperImage, dispatchToPropertyMapperImage)(Image);
+
+
+//List Widget
+const List = ({widget, preview, changeListText, changeListType, changeListName}) => {
+
+
+    let listType, listInput, listName;
+    return (
+        <html>
+        <head>
+            <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+                    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+                    crossOrigin="anonymous"/>
+            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+                  integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
+                  crossOrigin="anonymous"/>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
+                    integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
+                    crossOrigin="anonymous"/>
+            <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
+                  integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
+                  crossOrigin="anonymous"/>
+        </head>
+        <body>
+        <div className="container widget-container"
+             style={widgetContainerStyle}>
+            <div className="col-md-12">
+                <div hidden={preview}>
+                    <div className="row">
+                        <div className="col-md-12">
+                            <div className="form-group">
+    <textarea onChange={() => changeListText(widget.id, listInput.value)}
+              ref={node2 => listInput = node2}
+              value={widget.text} className="form-control"/> <br/>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="row">
+                        <div className="col-md-12">
+                            <div className="form-group">
+
+                                <select onChange={() => changeListType(widget.id, listType.value)}
+                                        ref={node2 => listType = node2}
+                                        value={widget.listType} className="form-control">
+                                    <option value="ordered">Ordered List</option>
+                                    <option value="unordered">Unordered List</option>
+                                </select> <br/>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="row">
+                        <div className="col-md-12">
+                            <div className="form-group">
+
+                                <input onChange={() => changeListName(widget.id, listName.value)}
+                                       value={widget.name}
+                                       ref={node => listName = node} className="form-control"/> <br/>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="row">
+                        <div className="col-md-12">
+                            <div className="form-group">
+
+                                <h5> Preview</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div className="row">
+                    <div className="col-md-12">
+                        {widget.listType === "ordered" && <div>{orderedText(widget.text)} </div>}
+                        {widget.listType === "unordered" && <div> {unorderedText(widget.text)}</div>}
+                    </div>
+                </div>
+            </div>
+        </div>
+        </body>
+        </html>
+    )
+};
+
+
+const orderedText = (text) => {
+    let stringArray = text.split("\n");
+    return (
+
+        <ol className="list-group">
+            {stringArray.map(line => (<li> {line} </li>))}
+        </ol>
+    )
+};
+
+const unorderedText = (text) => {
+    let stringArray = text.split("\n");
+    return (
+
+        <ul className="list-group">
+            {stringArray.map(line => (<li> {line} </li>))}
+        </ul>
+    )
+};
+
+
+const dispatchToPropertyMapperList = dispatch => (
+    {
+        changeListText:
+            (widgetId, newListText) =>
+                actions.changeListText(dispatch, widgetId, newListText),
+        changeListName:
+            (widgetId, newListName) =>
+                actions.changeListName(dispatch, widgetId, newListName),
+        changeListType:
+            (widgetId, listType) =>
+                actions.changeListType(dispatch, widgetId, listType)
+    }
+);
+
+const stateToPropertyMapperList = state => (
+    {
+        preview: state.preview
+    }
+);
+
+
+const ListContainer = connect(stateToPropertyMapperList, dispatchToPropertyMapperList)(List);
