@@ -36,7 +36,7 @@ export const widgetReducer = (state = {widgets: [], preview: false}, action) => 
             };
 
         default:
-            
+
             return state;
 
 
