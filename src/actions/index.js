@@ -126,7 +126,7 @@ export const changeLinkName = (dispatch,widgetId,linkName) =>(
 );
 
 
-// Misc constants
+// Misc
 export const addWidget = dispatch => (
     dispatch({type: constants.ADD_WIDGET})
 );
