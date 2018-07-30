@@ -5,7 +5,6 @@ import '../node_modules/font-awesome/css/font-awesome.min.css';
 import './stylesheet.css';
 import WhiteBoard from './containers/WhiteBoard';
 
-
 ReactDOM.render(
     <WhiteBoard/>,
     document.getElementById('root')

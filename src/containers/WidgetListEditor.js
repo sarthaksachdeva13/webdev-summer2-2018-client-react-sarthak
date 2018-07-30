@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
 import {createStore} from 'redux';
 import {Provider} from 'react-redux';
-import WidgetListContainer from './WidgetList';
+import {WidgetListContainer} from './WidgetList';
+import {WidgetReducer} from "../reducers/WidgetReducer";
 
 
-let store = createStore(widgetReducer);
+let store = createStore(WidgetReducer);
 
 export default class WidgetListEditor extends Component {
     constructor(props) {
@@ -55,11 +56,11 @@ export default class WidgetListEditor extends Component {
 
 
     render() {
+        console.log("987654");
         return (
             <Provider store={store}>
                 <WidgetListContainer topicId={this.state.topicId}/>
             </Provider>
-
         );
     }
 

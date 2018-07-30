@@ -1,10 +1,9 @@
 import React, {Component} from "react";
 import TopicPillItem from '../components/TopicPillItem';
 import TopicService from '../services/TopicServiceClient';
-import {BrowserRouter as Route} from 'react-router-dom';
+import {BrowserRouter as Router, Route} from 'react-router-dom';
 import WidgetListEditor from './WidgetListEditor';
 import '../stylesheet.css';
-
 class TopicPills extends Component {
     constructor() {
         super();
@@ -93,6 +92,7 @@ class TopicPills extends Component {
 
     render() {
         return (
+            <Router>
                 <div>
                     <div className="row">
                         <div className="input-group topicIn">
@@ -116,6 +116,7 @@ class TopicPills extends Component {
                            component={WidgetListEditor}>
                     </Route>
                 </div>
+            </Router>
         )
     }
 }

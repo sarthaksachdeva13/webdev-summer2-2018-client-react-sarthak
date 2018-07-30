@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 
-class TopicCard
-    extends Component {
+class TopicCard extends Component {
 
     constructor(props) {
         super(props);
@@ -16,6 +15,7 @@ class TopicCard
     }
 
     componentDidMount() {
+        console.log("Topic Card!");
         this.setTopicId(this.props.match.params.topicId);
         this.setTopicTitle(this.props.match.params.topicTitle);
 

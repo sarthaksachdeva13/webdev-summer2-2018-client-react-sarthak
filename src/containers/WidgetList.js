@@ -1,8 +1,11 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import * as actions from "../actions"
+import WidgetComponent from '../components/Widget'
+import '../stylesheet.css';
 
-export default class WidgetList extends Component {
+
+class WidgetList extends Component {
     constructor(props) {
         super(props);
         this.state = {topicId: ''};
@@ -47,19 +50,20 @@ export default class WidgetList extends Component {
                 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
                       integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
                       crossOrigin="anonymous"/>
+
             </head>
             <body>
-            <div className="container pt-5">
+            <div className="container pt-5 widgetTemplate">
                 <div className="row flex-row-reverse pr-2 pb-3">
-                    <div className="d-flex float-right my-auto">
+                    <div>
                         <label className="switch m-auto">
                             <input type="checkbox" onClick={this.props.preview}/>
-                            <span className="slider round"></span>
+                            <span className="slider round"/>
                         </label>
                     </div>
                     <div className="d-flex pr-2">
                         <button className="btn btn-success m-auto" hidden={this.props.previewMode}
-                                onClick={this.saveToServer}>
+                                onClick={this.saveFunction}>
                             Save
                         </button>
                     </div>
@@ -68,15 +72,15 @@ export default class WidgetList extends Component {
 
             <div>
                 {this.props.widgets.map(widget => (
-                    <WidgetContainer widget={widget}
+                    <WidgetComponent widget={widget}
                                      preview={this.props.previewMode}
                                      key={widget.widgetOrder}
                                      widgetLength={this.props.widgets.length}/>
                 ))}
             </div>
-            <div className="container pt-1">
-                <div className="row flex-row-reverse pr-2 pb-3">
-                    <div className="row flex-row-reverse pr-2 pb-3">
+            <div className="container">
+                <div className="row flex-row-reverse">
+                    <div className="row flex-row-reverse">
                         <button className="btn btn-danger" onClick={this.props.addWidget}><i
                             className="fas fa-plus-square"/>
                         </button>
@@ -87,7 +91,6 @@ export default class WidgetList extends Component {
             </html>
         )
     }
-
 }
 
 const stateToPropertyMapper = (state) => ({
@@ -105,6 +108,6 @@ const dispatchToPropertyMapper = dispatch =>
         }
     );
 
-const WidgetListContainer =
+export const WidgetListContainer =
     connect(stateToPropertyMapper, dispatchToPropertyMapper)
     (WidgetList);

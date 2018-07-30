@@ -2,7 +2,7 @@ import LessonTabItem from '../components/LessonTabItem';
 import React, {Component} from "react";
 import LessonService from '../services/LessonServiceClient';
 import LessonEditor from './LessonEditor';
-import {BrowserRouter as Router, Route} from 'react-router-dom';
+import {Route} from 'react-router-dom';
 
 export default class LessonTabs extends Component {
     constructor() {
