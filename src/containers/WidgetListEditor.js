@@ -3,6 +3,8 @@ import {createStore} from 'redux';
 import {Provider} from 'react-redux';
 import {WidgetListContainer} from './WidgetList';
 import {WidgetReducer} from "../reducers/WidgetReducer";
+import '../stylesheet.css';
+
 
 
 let store = createStore(WidgetReducer);
@@ -54,9 +56,7 @@ export default class WidgetListEditor extends Component {
         this.setState({courseId: courseId});
     }
 
-
     render() {
-        console.log("987654");
         return (
             <Provider store={store}>
                 <WidgetListContainer topicId={this.state.topicId}/>

@@ -26,50 +26,50 @@ export const preview = dispatch => (
 
 
 // Heading Actions
-export const changeHeadingName = (dispatch, widgetId, newName) => (
+export const changeHeadingName = (dispatch, widgetId, newHeadingName) => (
     dispatch({
         type: constants.CHANGE_HEADING_NAME,
         id: widgetId,
-        name: newName
+        name: newHeadingName
     })
 );
 
-export const changeHeadingText = (dispatch, widgetId, newText) => (
+export const changeHeadingText = (dispatch, widgetId, newHeadingText) => (
     dispatch({
         type: constants.CHANGE_HEADING_TEXT,
         id: widgetId,
-        text: newText
+        text: newHeadingText
     })
 );
-export const changeHeadingSize = (dispatch, widgetId, newSize) => (
+export const changeHeadingSize = (dispatch, widgetId, newHeadingSize) => (
     dispatch({
         type: constants.CHANGE_HEADING_SIZE,
         id: widgetId,
-        size: newSize
+        size: newHeadingSize
     })
 );
 
 
 //Paragraph Actions
-export const changeParagraphText = (dispatch, widgetId, newText) => (
+export const changeParagraphText = (dispatch, widgetId, newParagraphText) => (
     dispatch({
         type: constants.CHANGE_PARA_TEXT,
         id: widgetId,
-        text: newText
+        text: newParagraphText
     })
 );
 
-export const changeParagraphName = (dispatch, widgetId, newName) => (
+export const changeParagraphName = (dispatch, widgetId, newParagraphName) => (
     dispatch({
         type: constants.CHANGE_PARA_NAME,
         id: widgetId,
-        name: newName
+        name: newParagraphName
     })
 );
 
 
 // List Actions
-export const changeListName = (dispatch, widgetId, newListText) => (
+export const changeListText = (dispatch, widgetId, newListText) => (
 
     dispatch({
         type: constants.CHANGE_LIST_TEXT,
@@ -79,8 +79,7 @@ export const changeListName = (dispatch, widgetId, newListText) => (
     })
 );
 
-export const changeListText = (dispatch, widgetId, newListName) => (
-
+export const changeListName = (dispatch, widgetId, newListName) => (
     dispatch({
         type: constants.CHANGE_LIST_NAME,
         id: widgetId,
@@ -89,55 +88,55 @@ export const changeListText = (dispatch, widgetId, newListName) => (
     })
 
 );
-export const changeListType = (dispatch, widgetId, listType) => (
+export const changeListType = (dispatch, widgetId, newListType) => (
     dispatch({
         type: constants.CHANGE_LIST_TYPE,
         id: widgetId,
-        listType: listType
+        listType: newListType
     })
 );
 
 
 //Image Actions
-export const changeImageText = (dispatch, widgetId, imageText) => (
+export const changeImageText = (dispatch, widgetId, newImageText) => (
     dispatch({
         type: constants.CHANGE_IMAGE_TEXT,
         id: widgetId,
-        text: imageText
+        text: newImageText
     })
 );
 
-export const changeImageName = (dispatch, widgetId, imageName) => (
+export const changeImageName = (dispatch, widgetId, newImageName) => (
     dispatch({
         type: constants.CHANGE_IMAGE_NAME,
         id: widgetId,
-        name: imageName
+        name: newImageName
     })
 );
 
 
 //Link Actions
-export const changeLinkText = (dispatch, widgetId, linkText) => (
+export const changeLinkText = (dispatch, widgetId, newLinkText) => (
     dispatch({
         type: constants.CHANGE_LINK_TEXT,
         id: widgetId,
-        text: linkText
+        text: newLinkText
     })
 );
 
-export const changeLinkDisplay = (dispatch, widgetId, linkDispText) => (
+export const changeLinkDisplay = (dispatch, widgetId, newLinkDisplay) => (
     dispatch({
         type: constants.CHANGE_LINK_DISPLAY,
         id: widgetId,
-        linkName: linkDispText
+        linkName: newLinkDisplay
     })
 );
 
-export const changeLinkName = (dispatch, widgetId, linkName) => (
+export const changeLinkName = (dispatch, widgetId, newLinkName) => (
     dispatch({
         type: constants.CHANGE_LINK_NAME,
         id: widgetId,
-        name: linkName
+        name: newLinkName
     })
 );
 

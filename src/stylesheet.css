@@ -19,6 +19,15 @@ h1 {
     border-radius: 3px;
 }
 
+
+.inputField{
+    margin-top: 10px;
+}
+
+.addButton
+{
+    margin-right: 15px;
+}
 .widgetContainerDiv
 {
     border: thin solid gray;
