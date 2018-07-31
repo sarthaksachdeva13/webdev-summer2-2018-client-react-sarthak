@@ -26,7 +26,7 @@ export const WidgetReducer = (state = initialState, action) => {
 
 
         case constants.SAVE:
-            fetch('http://localhost:8080/api/topic/' + action.topicId + "/widgets", {
+            fetch('https://sarthakwebdev.herokuapp.com/api/topic/' + action.topicId + "/widgets", {
                 method: 'post',
                 body: JSON.stringify(state.widgets),
                 headers: {

@@ -2,7 +2,7 @@ import * as constants from "../constants/index"
 
 
 export const findAllWidgetsForTopic = (dispatch, topicId) => {
-    fetch('http://localhost:8080/api/topic/' + topicId + "/widget")
+    fetch('https://sarthakwebdev.herokuapp.com/api/topic/' + topicId + "/widget")
         .then(response => (response.json()))
         .then(widgets => dispatch({
             type: constants.FIND_ALL_WIDGETS_FOR_TOPIC,
