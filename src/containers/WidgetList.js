@@ -13,7 +13,6 @@ class WidgetList extends Component {
         this.saveFunction = this.saveFunction.bind(this);
     }
 
-
     componentDidMount() {
         this.setTopic(this.props.topicId);
     }
@@ -46,7 +45,7 @@ class WidgetList extends Component {
                             </label>
                         </div>
                         <div className="d-flex pr-2">
-                            <button className="btn btn-primary m-auto" hidden={this.props.previewMode}
+                            <button className="btn btn-primary m-auto saveBtn" hidden={this.props.previewMode}
                                     onClick={this.saveFunction}>
                                 Save
                             </button>

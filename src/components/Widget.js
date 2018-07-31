@@ -9,7 +9,6 @@ import '../stylesheet.css';
 const Widget = ({widget, preview, dispatch, widgetLength}) => {
 
     let widgetTypeSelector;
-
     return (
         <div>
             <div hidden={preview}>
@@ -18,7 +17,8 @@ const Widget = ({widget, preview, dispatch, widgetLength}) => {
                         <div className="col-md-12 text-dark pt-2">
                             <div className="row flex-row pb-1">
                                 <div className="col-md-3 d-inline-flex">
-                                    <h4>{widget.widgetType}</h4></div>
+                                    <h4 className="widgetRowName">{widget.widgetType}</h4>
+                                </div>
                                 <div className="col-md-9">
 
                                     <div className="d-inline-flex pr-2 float-right">
@@ -28,6 +28,23 @@ const Widget = ({widget, preview, dispatch, widgetLength}) => {
                                     </div>
 
 
+                                    <div className="d-inline-flex pr-1 float-right my-auto dropdown" id="widgetListDiv">
+                                        <select
+                                            value={widget.widgetType}
+                                            onChange={e =>
+                                                dispatch({
+                                                    type: 'WIDGET_TYPE',
+                                                    id: widget.id,
+                                                    widgetType: widgetTypeSelector.value
+                                                })} ref={node => widgetTypeSelector = node}>
+                                            <option>Heading</option>
+                                            <option>Paragraph</option>
+                                            <option>List</option>
+                                            <option>Image</option>
+                                            <option>Link</option>
+                                        </select>
+                                    </div>
+
                                     <div className="d-inline-flex pr-2 float-right">
                                         <button onClick={e => (
                                             dispatch({type: constants.MOVE_WIDGET_UP, widgetOrder: widget.widgetOrder})
@@ -35,8 +52,6 @@ const Widget = ({widget, preview, dispatch, widgetLength}) => {
                                             <i
                                                 className="fa fa-arrow-down"/></button>
                                     </div>
-
-
                                     <div className="d-inline-flex pr-2 float-right">
                                         <button onClick={e => (
                                             dispatch({
@@ -45,24 +60,6 @@ const Widget = ({widget, preview, dispatch, widgetLength}) => {
                                             })
                                         )} disabled={(widget.widgetOrder == 1)} className="btn btn-warning"><i
                                             className="fa fa-arrow-up"/></button>
-                                    </div>
-
-
-                                    <div className="d-inline-flex pr-1 float-right my-auto dropdown" id="widgetListDiv">
-                                        <select
-                                            value={widget.widgetType}
-                                                onChange={e =>
-                                                    dispatch({
-                                                        type: 'WIDGET_TYPE',
-                                                        id: widget.id,
-                                                        widgetType: widgetTypeSelector.value
-                                                    })} ref={node => widgetTypeSelector = node}>
-                                            <option>Heading</option>
-                                            <option>Paragraph</option>
-                                            <option>List</option>
-                                            <option>Image</option>
-                                            <option>Link</option>
-                                        </select>
                                     </div>
                                 </div>
                             </div>
@@ -340,7 +337,6 @@ const ListContainer = connect(stateToPropertyMapperList, dispatchToPropertyMappe
 
 
 //Image
-
 const Image = ({widget, preview, changeImageText, changeImageName}) => {
     let imageInput;
     let imageName;
@@ -414,7 +410,6 @@ const ImageContainer =
 
 
 //Link
-
 const Link = ({widget, preview, changeLinkText, changeLinkName, changeLinkDisplay}) => {
     let linkInput;
     let linkName;

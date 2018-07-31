@@ -2,7 +2,7 @@ body {
     background-color: rgb(248, 248, 255);
 }
 
-h1 {
+.whiteboardHeading {
     text-align: center;
     font-family: 'Cabin Sketch', cursive;
     font-size: 57px;
@@ -19,9 +19,26 @@ h1 {
     border-radius: 3px;
 }
 
+.saveBtn
+{
+    border-radius: 20px;
 
+}
 .inputField{
     margin-top: 10px;
+}
+
+
+.widgetRow{
+    background-color: #FFFAF0;
+}
+
+
+.widgetRowName{
+    font-family: 'Quicksand', sans-serif;
+    font-size: 30px;
+
+
 }
 
 .addButton
@@ -103,10 +120,6 @@ h1 {
 }
 
 
-
-/*////*/
-
-
 .switch {
     position: relative;
     display: inline-block;
@@ -125,25 +138,25 @@ h1 {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: #dc3545;
-    -webkit-transition: 0.4s;
+    background-color: #696969;
     transition: .4s;
 }
 
 .slider:before {
     position: absolute;
     content: "";
-    height: 25px;
-    width: 25px;
-    left: 4px;
-    bottom: 4px;
+    height: 26px;
+    width: 26px;
+    left: 5px;
+    bottom: 5px;
+    top: 3px;
     background-color: white;
     -webkit-transition: .4s;
     transition: .4s;
 }
 
 input:checked + .slider {
-    background-color: #28a745;
+    background-color: #9ACD32;
 }
 
 input:focus + .slider {
@@ -151,9 +164,9 @@ input:focus + .slider {
 }
 
 input:checked + .slider:before {
-    -webkit-transform: translateX(16px);
-    -ms-transform: translateX(16px);
-    transform: translateX(16px);
+    -webkit-transform: translateX(15px);
+    -ms-transform: translateX(15px);
+    transform: translateX(15px);
 }
 
 .slider.round {
