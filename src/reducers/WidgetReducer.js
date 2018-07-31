@@ -17,7 +17,7 @@ export const WidgetReducer = (state = initialState, action) => {
             let newState = {
                 widgets: state.widgets.filter((widget) => {
                     if (widget.id === action.id) {
-                        widget.widgetType = action.widgetType
+                        widget.widgetType = action.widgetType;
                     }
                     return true;
                 })
@@ -51,7 +51,7 @@ export const WidgetReducer = (state = initialState, action) => {
                         text: 'Widget Text',
                         name: 'Widget Name',
                         widgetType: 'Paragraph',
-                        size: '1',
+                        size: '2',
                         listType: 'ordered',
                         widgetOrder: state.widgets.length + 1
                     }

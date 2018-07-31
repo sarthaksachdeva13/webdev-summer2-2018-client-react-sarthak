@@ -41,6 +41,11 @@ body {
 
 }
 
+.imageStyle{
+    height: 600%;
+    width: 600%;
+}
+
 .addButton
 {
     margin: 10px;

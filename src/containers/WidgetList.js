@@ -60,6 +60,7 @@ class WidgetList extends Component {
                                          key={widget.widgetOrder}
                                          widgetLength={this.props.widgets.length}/>
                     ))}
+                    {console.log(this.props.widgets)}
                 </div>
                 <div className="container">
                     <div className="row flex-row-reverse">
