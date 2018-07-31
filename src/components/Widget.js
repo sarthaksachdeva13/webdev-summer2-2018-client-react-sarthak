@@ -336,6 +336,7 @@ const textToUnorderedList = (text) => {
 const ListContainer = connect(stateToPropertyMapperList, dispatchToPropertyMapperList)(List);
 
 
+
 //Image
 const Image = ({widget, preview, changeImageText, changeImageName}) => {
     let imageInput;
@@ -359,7 +360,7 @@ const Image = ({widget, preview, changeImageText, changeImageName}) => {
                             <div className="col-md-12">
                                 <div className="form-group">
                                     <input onChange={() => changeImageName(widget.id, imageName.value)}
-                                           value={widget.name}
+                                           placeholder="Enter name for image"
                                            ref={node => imageName = node} className="form-control"/> <br/>
                                 </div>
                             </div>

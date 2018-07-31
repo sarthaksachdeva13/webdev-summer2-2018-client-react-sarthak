@@ -51,7 +51,7 @@ export const WidgetReducer = (state = initialState, action) => {
                         text: 'Widget Text',
                         name: 'Widget Name',
                         widgetType: 'Paragraph',
-                        size: '2',
+                        size: '1',
                         listType: 'ordered',
                         widgetOrder: state.widgets.length + 1
                     }
@@ -228,7 +228,6 @@ export const WidgetReducer = (state = initialState, action) => {
                         if (widget.id === action.id) {
                             widget.text = action.text;
                         }
-
                         return Object.assign({}, widget);
 
                     })
@@ -244,7 +243,6 @@ export const WidgetReducer = (state = initialState, action) => {
                         if (widget.id === action.id) {
                             widget.name = action.name;
                         }
-
                         return Object.assign({}, widget);
 
                     })

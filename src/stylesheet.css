@@ -43,7 +43,9 @@ body {
 
 .addButton
 {
-    margin-right: 15px;
+    margin: 10px;
+    border-radius: 20px;
+
 }
 .widgetContainerDiv
 {

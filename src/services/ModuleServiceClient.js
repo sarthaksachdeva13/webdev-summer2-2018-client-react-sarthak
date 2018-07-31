@@ -1,5 +1,5 @@
-const MODULE_API_URL = 'http://localhost:8080/api/course/CID/module';
-const MODULE_URL = 'http://localhost:8080/api/module/MID';
+const MODULE_API_URL = 'https://sarthakwebdev.herokuapp.com/api/course/CID/module';
+const MODULE_URL = 'https://sarthakwebdev.herokuapp.com/api/module/MID';
 
 
 let _singleton = Symbol();
